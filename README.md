@@ -1,13 +1,6 @@
-# 💻 ci5-run 💻
+# ⌨️ [ci5.run](https://ci5.run):~# terminal-native utilities 🖲️
 
-Web interface and installation utilities for the Ci5 project.
-
-## Live Site
-
-**[ci5.run](https://ci5.run)** - Terminal interface for Ci5 utilities
-
-## What's Here
-
+### 💉 What's Here 
 - `index.html` - Terminal-style command directory
 - `scripts/` - Shell scripts for installation and utilities
 - `_redirects` - Cloudflare Pages routing configuration
@@ -37,3 +30,4 @@ All scripts are:
 - [ci5-docs](https://github.com/dreamswag/ci5-network) - Documentation / FAQ
 
 - [ci5-host](https://github.com/dreamswag/ci5-host) - "TL;DR" Promotional Homepage
+
