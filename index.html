@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ci5.run → Terminal Utilities</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #000;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            border: 1px solid #0f0;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            color: #0ff;
+            font-size: 24px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .header .tagline {
+            color: #888;
+            font-size: 13px;
+        }
+        .intro {
+            background: #0a0a0a;
+            border: 1px solid #222;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .intro h2 {
+            color: #0ff;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .intro p {
+            color: #888;
+            margin-bottom: 10px;
+        }
+        .command {
+            border: 1px solid #333;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #0a0a0a;
+        }
+        .command-name {
+            color: #0ff;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .command-desc {
+            color: #888;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+        .command-usage {
+            background: #111;
+            border: 1px solid #0f0;
+            padding: 15px;
+            color: #0f0;
+            font-size: 14px;
+            margin-bottom: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .command-note {
+            color: #ff6;
+            font-size: 11px;
+            margin-top: 10px;
+        }
+        .command-source {
+            color: #555;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+        .footer {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            margin-top: 40px;
+            color: #555;
+            font-size: 12px;
+            text-align: center;
+        }
+        .footer a {
+            color: #888;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #0ff;
+        }
+        .blink {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>ci5.run <span class="blink">▮</span></h1>
+    <p class="tagline">Raspberry Pi 5 → 0ms Router | Terminal Utilities</p>
+</div>
+
+<div class="intro">
+    <h2>What Is This?</h2>
+    <p>Streamlined installation utilities for the Ci5 project - a Raspberry Pi 5 router that achieves 0ms added latency under full load with enterprise-grade security.</p>
+    <p>All scripts are <strong>open source</strong>, auditable on GitHub, and designed for one-command execution.</p>
+</div>
+
+<div class="command">
+    <div class="command-name">bootstrap</div>
+    <div class="command-desc">⚡ IN-PLACE TRANSFORM: Convert Raspberry Pi OS → Ci5 Router (EASIEST METHOD)</div>
+    <div class="command-usage">curl -sSL https://ci5.run/bootstrap | sudo bash</div>
+    <div class="command-note">⚠ Requires: Fresh Raspberry Pi OS Lite 64-bit on Pi 5<br>
+    ⚠ System will reboot and change IP to 192.168.99.1</div>
+    <div class="command-source">Source: <a href="https://github.com/dreamswag/ci5-web/blob/main/scripts/bootstrap.sh" target="_blank">scripts/bootstrap.sh</a></div>
+</div>
+
+<div class="command">
+    <div class="command-name">flash</div>
+    <div class="command-desc">🔥 GOLDEN IMAGE: Direct disk flash of pre-built Ci5 system (for advanced users)</div>
+    <div class="command-usage">curl -sSL https://ci5.run/flash | sudo sh</div>
+    <div class="command-note">⚠ Requires: Two drives (Pi OS on Drive A, blank Drive B for Ci5)</div>
+    <div class="command-source">Source: <a href="https://github.com/dreamswag/ci5-web/blob/main/scripts/flash.sh" target="_blank">scripts/flash.sh</a></div>
+</div>
+
+<div class="command">
+    <div class="command-name">recover</div>
+    <div class="command-desc">🆘 EMERGENCY RECOVERY: Restores network access when locked out</div>
+    <div class="command-usage">curl -sSL https://ci5.run/recover | sh</div>
+    <div class="command-source">Source: <a href="https://github.com/dreamswag/ci5/blob/main/extras/emergency_recovery.sh" target="_blank">extras/emergency_recovery.sh</a></div>
+</div>
+
+<div class="command">
+    <div class="command-name">debug</div>
+    <div class="command-desc">🔍 SYSTEM DIAGNOSTICS: Generates comprehensive bone marrow report</div>
+    <div class="command-usage">curl -sSL https://ci5.run/debug | sh</div>
+    <div class="command-source">Source: <a href="https://github.com/dreamswag/ci5/blob/main/bone_marrow.sh" target="_blank">bone_marrow.sh</a></div>
+</div>
+
+<div class="command">
+    <div class="command-name">speedwiz</div>
+    <div class="command-desc">⚡ SPEED AUTO-TUNE: Calibrates SQM limits to your ISP line speed</div>
+    <div class="command-usage">curl -sSL https://ci5.run/speedwiz | sh</div>
+    <div class="command-source">Source: <a href="https://github.com/dreamswag/ci5/blob/main/extras/speed_wizard.sh" target="_blank">extras/speed_wizard.sh</a></div>
+</div>
+
+<div class="footer">
+    <a href="https://ci5.host">ci5.host</a> · 
+    <a href="https://ci5.network">ci5.network</a> · 
+    <a href="https://github.com/dreamswag/ci5">GitHub</a>
+    <br><br>
+    Ci5 Project · Open Source · MIT License
+</div>
+
+</body>
+</html>

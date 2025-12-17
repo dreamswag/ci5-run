@@ -1,0 +1,5 @@
+/bootstrap  /scripts/bootstrap.sh  200
+/flash      /scripts/flash.sh      200
+/recover    /scripts/recover.sh    200
+/debug      /scripts/debug.sh      200
+/speedwiz   /scripts/speedwiz.sh   200
