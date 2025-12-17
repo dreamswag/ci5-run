@@ -26,8 +26,10 @@ All scripts are:
 
 ## Related Repos
 
-- [ci5](https://github.com/dreamswag/ci5) - Main installation scripts and configs
-- [ci5-docs](https://github.com/dreamswag/ci5-network) - Documentation / FAQ
+- [ci5](https://github.com/dreamswag/ci5) - Core Scripts & Install Repo
+- [ci5.host](https://github.com/dreamswag/ci5.host) - "TL;DR Ci5"
+- [ci5.network](https://github.com/dreamswag/ci5.network) - Documentation
 
-- [ci5-host](https://github.com/dreamswag/ci5-host) - "TL;DR" Promotional Homepage
+
+
 
