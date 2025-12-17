@@ -1,4 +1,4 @@
-# ci5-run
+# 💻 ci5-run 💻
 
 Web interface and installation utilities for the Ci5 project.
 
@@ -35,4 +35,5 @@ All scripts are:
 
 - [ci5](https://github.com/dreamswag/ci5) - Main installation scripts and configs
 - [ci5-docs](https://github.com/dreamswag/ci5-network) - Documentation / FAQ
+
 - [ci5-host](https://github.com/dreamswag/ci5-host) - "TL;DR" Promotional Homepage
