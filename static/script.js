@@ -3,87 +3,109 @@ document.addEventListener('DOMContentLoaded', async () => {
     const input = document.getElementById('domainInput');
 
     const boot = [
-        "UPLINK ESTABLISHED.",
-        "IDENTITY: [TELEMETRY_ERR:410]",
-        "STATUS: SOVEREIGN",
-        "\nCOMMAND PROTOCOLS",
-        "--------------------",
-        "  > FREE       curl ci5.run/free    | sh",
-        "  > FAST       curl ci5.run/fast    | sh",
-        "  > HEAL       curl ci5.run/heal    | sh",
-        "  > SELF       curl ci5.run/self    | sh",
-        "  > PURE       curl ci5.run/pure    | sh",
-        "  > TRUE       curl ci5.run/true    | sh",
-        "  > HOME       curl ci5.run/home    | sh",
-        "  > HIDE       curl ci5.run/hide    | sh",
-        "  > AWAY       curl ci5.run/away    | sh",
+        "<span class='green'>UPLINK ESTABLISHED.</span>",
+        "IDENTITY: [<span class='red'>TELEMETRY_ERR:41</span><span id='glitch'>0</span>]",
+        "STATUS: <span class='purple'>SOVEREIGN</span>",
+        "\n<span class='dim'>COMMAND PROTOCOLS</span>",
+        "<span class='dim'>--------------------</span>",
+        "  > <span class='cyan'>FREE</span>       curl ci5.run/free    <span class='dim'>| sh</span>",
+        "  > <span class='cyan'>FAST</span>       curl ci5.run/fast    <span class='dim'>| sh</span>",
+        "  > <span class='cyan'>HEAL</span>       curl ci5.run/heal    <span class='dim'>| sh</span>",
+        "  > <span class='cyan'>SELF</span>       curl ci5.run/self    <span class='dim'>| sh</span>",
+        "  > <span class='cyan'>PURE</span>       curl ci5.run/pure    <span class='dim'>| sh</span>",
+        "  > <span class='cyan'>TRUE</span>       curl ci5.run/true    <span class='dim'>| sh</span>",
+        "  > <span class='cyan'>HOME</span>       curl ci5.run/home    <span class='dim'>| sh</span>",
+        "  > <span class='cyan'>HIDE</span>       curl ci5.run/hide    <span class='dim'>| sh</span>",
+        "  > <span class='red'>AWAY</span>       curl ci5.run/away    <span class='dim'>| sh</span>",
         "\n"
     ];
 
+    function startGlitch() {
+        const el = document.getElementById('glitch');
+        if (!el) return;
+
+        const glitchLoop = () => {
+            const timeout = Math.random() * 9000 + 3000;
+            
+            setTimeout(() => {
+                el.textContent = '7';
+                el.style.opacity = '0.8';
+                
+                setTimeout(() => {
+                    el.textContent = '0';
+                    el.style.opacity = '1';
+                    glitchLoop(); 
+                }, 80);
+            }, timeout);
+        };
+        glitchLoop();
+    }
+
     async function init() {
         for (let line of boot) {
-            out.textContent += line + "\n";
-            await new Promise(r => setTimeout(r, 60));
+            out.innerHTML += line + "\n";
+            out.scrollTop = out.scrollHeight;
+            await new Promise(r => setTimeout(r, 40));
         }
+        startGlitch();
     }
 
     input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             const val = input.value.trim().toLowerCase();
             input.value = '';
-            out.textContent += `root@ci5:~$ ${val}\n`;
+            
+            out.innerHTML += `<span class='green'>root@ci5:~$</span> <span class='white'>${val}</span>\n`;
 
-            // STRICT PROTOCOL (Rejections)
             if (['install', 'bootstrap'].includes(val)) {
-                out.textContent += `Err: PARADIGM OBSOLETE. USE 'FREE'\n`;
+                out.innerHTML += `<span class='red'>Err: PARADIGM OBSOLETE. USE 'FREE'</span>\n`;
             } 
             else if (['speed', 'optimize'].includes(val)) {
-                out.textContent += `Err: USE 'FAST'\n`;
+                out.innerHTML += `<span class='red'>Err: USE 'FAST'</span>\n`;
             }
             else if (['debug', 'deep', 'far'].includes(val)) {
-                out.textContent += `Err: USE 'SELF'\n`;
+                out.innerHTML += `<span class='red'>Err: USE 'SELF'</span>\n`;
             }
             else if (['check', 'verify'].includes(val)) {
-                out.textContent += `Err: USE 'TRUE'\n`;
+                out.innerHTML += `<span class='red'>Err: USE 'TRUE'</span>\n`;
             }
             else if (['clean', 'core', 'partial'].includes(val)) {
-                out.textContent += `Err: USE 'PURE'\n`;
+                out.innerHTML += `<span class='red'>Err: USE 'PURE'</span>\n`;
             }
             else if (['restore', 'fix', 'recover', 'forever'].includes(val)) {
-                out.textContent += `Err: USE 'HEAL'\n`;
+                out.innerHTML += `<span class='red'>Err: USE 'HEAL'</span>\n`;
             }
             else if (['vpn', 'remote', 'tailscale'].includes(val)) {
-                out.textContent += `Err: USE 'HOME'\n`;
+                out.innerHTML += `<span class='red'>Err: USE 'HOME'</span>\n`;
             }
             else if (['uninstall', 'nuke', 'off', 'flee'].includes(val)) {
-                out.textContent += `Err: USE 'AWAY'\n`;
+                out.innerHTML += `<span class='red'>Err: USE 'AWAY'</span>\n`;
             }
 
-            // THE 9 PILLARS
             else if (val === 'free') {
-                out.textContent += `\nINITIALIZE / LIBERATE:\ncurl ci5.run/free | sh\n\n`;
+                out.innerHTML += `\n<span class='cyan'>INITIALIZE / LIBERATE:</span>\ncurl ci5.run/free | sh\n\n`;
             } else if (val === 'fast') {
-                out.textContent += `\nOPTIMIZE / ACCELERATE:\ncurl ci5.run/fast | sh\n\n`;
+                out.innerHTML += `\n<span class='cyan'>OPTIMIZE / ACCELERATE:</span>\ncurl ci5.run/fast | sh\n\n`;
             } else if (val === 'heal') {
-                out.textContent += `\nRESTORE / PERSIST:\ncurl ci5.run/heal | sh\n\n`;
+                out.innerHTML += `\n<span class='purple'>RESTORE / PERSIST:</span>\ncurl ci5.run/heal | sh\n\n`;
             } else if (val === 'self') {
-                out.textContent += `\nDIAGNOSE / INTROSPECT:\ncurl ci5.run/self | sh\n\n`;
+                out.innerHTML += `\n<span class='purple'>DIAGNOSE / INTROSPECT:</span>\ncurl ci5.run/self | sh\n\n`;
             } else if (val === 'pure') {
-                out.textContent += `\nCLEANSE / STRIP (Core Only):\ncurl ci5.run/pure | sh\n\n`;
+                out.innerHTML += `\n<span class='cyan'>CLEANSE / STRIP (Core Only):</span>\ncurl ci5.run/pure | sh\n\n`;
             } else if (val === 'true') {
-                out.textContent += `\nVERIFY / ALIGN:\ncurl ci5.run/true | sh\n\n`;
+                out.innerHTML += `\n<span class='purple'>VERIFY / ALIGN:</span>\ncurl ci5.run/true | sh\n\n`;
             } else if (val === 'home') {
-                out.textContent += `\nREMOTE / CONNECT (Tailscale):\ncurl ci5.run/home | sh\n\n`;
+                out.innerHTML += `\n<span class='cyan'>REMOTE / CONNECT (Tailscale):</span>\ncurl ci5.run/home | sh\n\n`;
             } else if (val === 'hide') {
-                out.textContent += `\nSTEALTH / CLOAK (Kill WAN if Inspection Dies):\ncurl ci5.run/hide | sh\n\n`;
+                out.innerHTML += `\n<span class='red'>STEALTH / CLOAK (Kill WAN if Inspection Dies):</span>\ncurl ci5.run/hide | sh\n\n`;
             } else if (val === 'away') {
-                out.textContent += `\nTOTAL UNINSTALL / NUKE:\ncurl ci5.run/away | sh\n\n`;
+                out.innerHTML += `\n<span class='red'>TOTAL UNINSTALL / NUKE:</span>\ncurl ci5.run/away | sh\n\n`;
             }
             
             else if (val === 'clear') {
-                out.textContent = '';
+                out.textContent = ''; 
             } else if (val !== '') {
-                out.textContent += `Err: Unknown command\n`;
+                out.innerHTML += `<span class='dim'>Err: Unknown command</span>\n`;
             }
             out.scrollTop = out.scrollHeight;
         }

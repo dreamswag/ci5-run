@@ -1,6 +1,13 @@
 :root {
-    --term-green: #4af626;
     --term-bg: #050505;
+    --term-green: #4af626; 
+    
+    --owrt-cyan: #00e5ff;   
+    --owrt-purple: #e040fb; 
+    --term-red: #ff5252;    
+    --term-white: #eceff1; 
+    --term-dim: #607d8b;   
+    
     --font-stack: 'VT323', monospace;
 }
 
@@ -16,7 +23,7 @@ body {
     background-repeat: no-repeat;
     
     font-family: var(--font-stack);
-    letter-spacing: 1.47px;
+    letter-spacing: 1.5px;
     
     display: flex;
     justify-content: center;
@@ -40,24 +47,37 @@ body {
 }
 
 #terminalOutput {
-    color: var(--term-green);
+    color: var(--term-white); 
     font-size: 22px;
-    line-height: 1.2;
+    line-height: 1.25;
     white-space: pre-wrap;
     word-wrap: break-word;
     flex-grow: 1;
     overflow-y: auto;
     margin-bottom: 20px;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
 }
 
 #terminalOutput::-webkit-scrollbar {
     display: none;
 }
 
+.cyan { color: var(--owrt-cyan); text-shadow: 0 0 3px rgba(0, 229, 255, 0.4); }
+.purple { color: var(--owrt-purple); text-shadow: 0 0 3px rgba(224, 64, 251, 0.4); }
+.green { color: var(--term-green); }
+.red { color: var(--term-red); text-shadow: 0 0 3px rgba(255, 82, 82, 0.4); }
+.dim { color: var(--term-dim); }
+.white { color: var(--term-white); }
+
+#glitch {
+    display: inline-block;
+    color: var(--term-red);
+}
+
 .input-line {
     display: flex;
     align-items: center;
-    border-top: 1px solid rgba(74, 246, 38, 0.3);
+    border-top: 1px solid rgba(0, 229, 255, 0.3);
     padding-top: 15px;
 }
 
@@ -70,11 +90,11 @@ body {
 #domainInput {
     background: transparent;
     border: none;
-    color: var(--term-green);
+    color: var(--owrt-cyan); 
     font-family: var(--font-stack);
     font-size: 22px;
     flex-grow: 1;
     outline: none;
-    caret-color: var(--term-green);
-    letter-spacing: 1.47px;
+    letter-spacing: 1.5px;
+    caret-color: var(--owrt-purple); 
 }
