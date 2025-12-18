@@ -8,11 +8,12 @@
 - `_redirects` - Cloudflare Pages routing configuration
 
 ## 🕵🏻 Security & Auditability
-> #### > **Open Source** ( *zero-trust model* )
+> #### > **Open Source** ( *zero-trust transparency* )
 
 > #### > **Served as `text/plain`** ( *inspect pre-bash* )
 
 > #### > **Checksummed** ( + *version-tagged* )
+
 
 
 
