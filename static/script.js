@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         "PROCEED...",
         "\nDEPLOYMENT COMMANDS",
         "-------------------",
-        "  > INSTALL    curl ci5.run/install | sh",
+        "  > FREE       curl ci5.run/free | sh",
         "  > RECOVER    curl ci5.run/recover | sh",
-        "  > SPEED      curl ci5.run/speed | sh",
+        "  > FAST       curl ci5.run/fast | sh",
         "\n"
     ];
 

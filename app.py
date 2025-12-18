@@ -7,7 +7,7 @@ SCRIPT_MAP = {
     'install': 'bootstrap.sh',
     'recover': 'recover.sh',
     'debug': 'debug.sh',
-    'speed': 'speedwiz.sh'
+    'fast': 'speedwiz.sh'
 }
 
 @app.route('/')
@@ -17,9 +17,9 @@ def index():
     if 'curl' in user_agent or 'wget' in user_agent:
         return Response("""CI5 RUNTIME ENVIROMENT v1.0
 ===========================
-  curl ci5.run/install  | sh
+  curl ci5.run/free     | sh
   curl ci5.run/recover  | sh
-  curl ci5.run/speed    | sh
+  curl ci5.run/fast    | sh
   curl ci5.run/debug    | sh
 """, mimetype='text/plain')
 
