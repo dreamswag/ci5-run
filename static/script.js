@@ -3,7 +3,7 @@ const input = document.getElementById('cmd');
 
 const boot = [
     "UPLINK ESTABLISHED.",
-    "IDENTITY: UNABLE TO VERIFY",
+    "IDENTITY: [CAN'T TELEMETRY]",
     "PROCEED...",
     "\nDEPLOYMENT COMMANDS\n-------------------\n  > INSTALL    curl ci5.run/install | sh\n  > RECOVER    curl ci5.run/recover | sh\n  > SPEED      curl ci5.run/speed | sh\n"
 ];
