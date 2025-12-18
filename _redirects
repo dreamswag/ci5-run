@@ -2,6 +2,7 @@
 /fast       /scripts/speedwiz.sh           200
 /far        /scripts/debug.sh              200
 /away       /scripts/partial-uninstall.sh  200
+/true       /scripts/truth.sh              200
 /forever    /scripts/recover.sh            200
 /hide       /scripts/paranoia_watchdog.sh  200
 /off        /scripts/uninstall.sh          200

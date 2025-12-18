@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         "  > FAST       curl ci5.run/fast    | sh",
         "  > FAR        curl ci5.run/far     | sh",
         "  > AWAY       curl ci5.run/away    | sh",
+        "  > TRUE       curl ci5.run/true    | sh",
         "  > FOREVER    curl ci5.run/forever | sh",
         "  > HIDE       curl ci5.run/hide    | sh",
         "  > OFF        curl ci5.run/off     | sh",
@@ -31,7 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             input.value = '';
             out.textContent += `root@ci5:~$ ${val}\n`;
 
-            // STRICT PROTOCOL: Rejects old/sloppy commands
+            // STRICT PROTOCOL
             if (['install', 'setup', 'bootstrap'].includes(val)) {
                 out.textContent += `Err: PARADIGM OBSOLETE. USE 'FREE'\n`;
             } 
@@ -47,8 +48,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             else if (['recover', 'restore', 'fix'].includes(val)) {
                 out.textContent += `Err: USE 'FOREVER'\n`;
             }
+            else if (['check', 'verify'].includes(val)) {
+                out.textContent += `Err: USE 'TRUE'\n`;
+            }
 
-            // THE 7 PILLARS
+            // THE 8 PILLARS
             else if (val === 'free') {
                 out.textContent += `\nINITIALIZE / LIBERATE:\ncurl ci5.run/free | sh\n\n`;
             } else if (val === 'fast') {
@@ -57,6 +61,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 out.textContent += `\nANALYZE / AUDIT:\ncurl ci5.run/far | sh\n\n`;
             } else if (val === 'away') {
                 out.textContent += `\nPARTIAL UNINSTALL (Keep Router):\ncurl ci5.run/away | sh\n\n`;
+            } else if (val === 'true') {
+                out.textContent += `\nVERIFY / ALIGN:\ncurl ci5.run/true | sh\n\n`;
             } else if (val === 'forever') {
                 out.textContent += `\nRESTORE / PERSIST:\ncurl ci5.run/forever | sh\n\n`;
             } else if (val === 'hide') {
