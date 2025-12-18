@@ -1,6 +1,6 @@
  # 📟 [ci5.run](https://ci5.run):~# curl ci5.run/free | sh ⌨️
 
-###### 📡 [ci5](https://github.com/dreamswag/ci5): core ~ 📟 ci5.run: auto ~ 🧪 [ci5.host](https://github.com/dreamswag/ci5.host): tl;dr ~ 🔬 [ci5.network](https://github.com/dreamswag/ci5.network): docs
+###### 📡 [ci5.host](https://github.com/dreamswag/ci5): core ~ 📟 ci5.run: auto ~ 🧪 [ci5.host](https://github.com/dreamswag/ci5.host): tl;dr ~ 🔬 [ci5.network](https://github.com/dreamswag/ci5.network): docs
 
 
 ## 🖲️ Purpose & Functionality
@@ -17,6 +17,7 @@
 > #### > **Served via `text/plain`** ( *inspect pre-bash* )
 
 > #### > **Checksummed** ( + *version-tagged* )
+
 
 
 
