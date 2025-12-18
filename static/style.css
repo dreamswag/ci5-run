@@ -1,21 +1,16 @@
-/* RASPBERRY PI DEFAULT (LXTERMINAL / TANGO) */
 :root {
-    /* Background: Pure Black */
     --term-bg: #000000;
     
-    /* Pi Prompt Green (Tango #4e9a06 is standard, but bold is #8ae234) */
     --term-green: #8ae234; 
     
-    /* Tango Palette (Standard Linux Defaults) */
-    --owrt-cyan: #06989a;   /* Dark Cyan (Standard readable cyan) */
-    --owrt-purple: #75507b; /* Dark Purple (Standard readable purple) */
-    --term-red: #cc0000;    /* Dark Red (Standard error red) */
+    --owrt-cyan: #00e5ff;  
+    --owrt-purple: #75507b; 
+    --term-red: #cc0000;   
     
-    /* Text Colors */
-    --term-white: #d3d7cf;  /* "Light Aluminum" - The authentic slightly grey-white */
-    --term-dim: #555753;    /* "Dark Aluminum" */
+    --term-white: #d3d7cf;  
+    --term-dim: #555753;   
     
-    --font-stack: 'Piboto', 'VT323', monospace; /* Piboto is the Pi default font */
+    --font-stack: 'Piboto', 'VT323', monospace; 
 }
 
 body {
