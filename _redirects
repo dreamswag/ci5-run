@@ -1,4 +1,4 @@
-/install             /scripts/bootstrap.sh   200
-/recover             /scripts/recover.sh     200
-/speed               /scripts/speedwiz.sh    200
-/debug               /scripts/debug.sh       200
+/install    /scripts/bootstrap.sh    200
+/recover    /scripts/recover.sh      200
+/speed      /scripts/speedwiz.sh     200
+/debug      /scripts/debug.sh        200

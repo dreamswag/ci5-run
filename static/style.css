@@ -4,18 +4,19 @@
     --font-stack: 'VT323', monospace;
 }
 
-body, html {
+body {
     margin: 0;
     padding: 0;
-    height: 100%;
-    background-color: var(--term-bg);
-    color: var(--term-green);
-    font-family: var(--font-stack);
-    font-size: 20px;
+    height: 100vh;
     overflow: hidden;
-}
-
-body {
+    background-color: var(--term-bg);
+    /* FULL PAGE BACKGROUND */
+    background-image: url('signal.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    font-family: var(--font-stack);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,25 +25,27 @@ body {
 .terminal-container {
     width: 100%;
     max-width: 900px;
-    height: 95vh;
-    /* Dark overlay gradient + background image */
-    background: linear-gradient(rgba(5, 5, 5, 0.85), rgba(5, 5, 5, 0.95)), url('image_842867.png');
-    background-size: cover;
-    background-position: center;
+    height: 85vh;
     padding: 30px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    border: 1px solid #1a1a1a;
-    box-shadow: 0 0 20px rgba(74, 246, 38, 0.1);
+    
+    /* GLASS EFFECT OVERLAY */
+    background: rgba(5, 5, 5, 0.92);
+    border: 1px solid #333;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
 }
 
 #terminalOutput {
+    color: var(--term-green);
+    font-size: 20px;
     white-space: pre-wrap;
     word-wrap: break-word;
     flex-grow: 1;
     overflow-y: auto;
     margin-bottom: 20px;
+    text-shadow: 0 0 2px rgba(74, 246, 38, 0.4);
 }
 
 #terminalOutput::-webkit-scrollbar {
@@ -52,13 +55,14 @@ body {
 .input-line {
     display: flex;
     align-items: center;
-    border-top: 1px solid rgba(74, 246, 38, 0.2);
+    border-top: 1px solid rgba(74, 246, 38, 0.3);
     padding-top: 15px;
 }
 
 .prompt {
+    color: var(--term-green);
     margin-right: 12px;
-    opacity: 0.9;
+    font-size: 20px;
 }
 
 #domainInput {
@@ -66,7 +70,7 @@ body {
     border: none;
     color: var(--term-green);
     font-family: var(--font-stack);
-    font-size: 22px;
+    font-size: 20px;
     flex-grow: 1;
     outline: none;
     caret-color: var(--term-green);
