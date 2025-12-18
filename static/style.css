@@ -1,86 +1,54 @@
 :root {
-    --term-green: #4af626;
-    --term-bg: #050505;
-    --font-stack: 'VT323', monospace;
+    --green: #4af626;
+    --bg: #050505;
+    --font: 'VT323', monospace;
 }
 
 body {
-    background-color: var(--term-bg);
-    color: var(--term-green);
-    font-family: var(--font-stack);
+    background: var(--bg);
+    color: var(--green);
+    font-family: var(--font);
     font-size: 20px;
     margin: 0;
-    padding: 0;
     height: 100vh;
-    overflow: hidden;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    overflow: hidden;
 }
 
-.scanlines {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    background-size: 100% 2px, 3px 100%;
-    pointer-events: none;
-    z-index: 999;
-}
-
-.terminal-container {
+.terminal {
     width: 100%;
     max-width: 800px;
     height: 90vh;
-    padding: 20px;
-    box-sizing: border-box;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
 }
 
-.brand-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
-    opacity: 0.9;
+.logo {
+    height: 100px;
+    margin: 0 auto 40px;
+    filter: grayscale(100%) sepia(100%) hue-rotate(60deg) saturate(500%) brightness(0.9);
 }
 
-.signal-logo {
-    height: 120px;
-    width: auto;
-    filter: grayscale(100%) sepia(100%) hue-rotate(60deg) saturate(500%) brightness(0.9) contrast(1.2);
-}
-
-#terminalOutput {
+#out {
     white-space: pre-wrap;
-    word-wrap: break-word;
     flex-grow: 1;
     overflow-y: auto;
-    margin-bottom: 10px;
 }
 
-#terminalOutput::-webkit-scrollbar {
-    display: none;
-}
+#out::-webkit-scrollbar { display: none; }
 
-.input-line {
-    display: flex;
-    align-items: center;
-    border-top: 1px solid #1a1a1a;
-    padding-top: 10px;
-}
+.in-line { display: flex; padding-top: 10px; border-top: 1px solid #111; }
+.prompt { margin-right: 10px; }
 
-.prompt {
-    margin-right: 12px;
-    opacity: 0.8;
-}
-
-#domainInput {
+input {
     background: transparent;
     border: none;
-    color: var(--term-green);
-    font-family: var(--font-stack);
+    color: var(--green);
+    font-family: var(--font);
     font-size: 20px;
     flex-grow: 1;
     outline: none;
-    caret-color: var(--term-green);
 }
