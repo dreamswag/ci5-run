@@ -8,14 +8,15 @@
 - `scripts/` - Shell scripts for installation and utilities
 - `_redirects` - Cloudflare Pages routing configuration
 
-## 🕵🏻 Security & Audit
+## 🕵🏻 Security 
 
 ### Scripts are always:
-- **Open source**
+- **Open source & auditable**
     - (_completely transparent_)
 - **Served as `text/plain`**
     - (_inspect pre-bash_)
 - **Checksummed + version-tagged**
+
 
 
 
