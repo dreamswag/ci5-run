@@ -8,11 +8,40 @@
     <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-    <div class="terminal-container">
-        <div id="terminalOutput"></div>
-        <div class="input-line">
-            <span class="prompt">root@ci5:~#</span>
-            <input type="text" id="domainInput" autocomplete="off" spellcheck="false" autofocus>
+    <div id="taskbar" class="hidden">
+        <div class="dock-icon" id="restoreBtn" title="Restore Terminal">
+            <span class="dock-glitch">>_</span>
+        </div>
+    </div>
+
+    <div class="terminal-container" id="terminalWindow">
+        <div class="resizer n"></div>
+        <div class="resizer e"></div>
+        <div class="resizer s"></div>
+        <div class="resizer w"></div>
+        <div class="resizer ne"></div>
+        <div class="resizer nw"></div>
+        <div class="resizer se"></div>
+        <div class="resizer sw"></div>
+
+        <div class="terminal-header" id="headerHandle">
+            <div class="terminal-tab active-tab">
+                <span class="tab-icon"></span> 
+                <span class="tab-text">root@ci5:~</span>
+            </div>
+            <div class="window-controls">
+                <button class="control minimize" id="minBtn" title="Minimize">&minus;</button>
+                <button class="control maximize" id="maxBtn" title="Maximize">□</button>
+                <button class="control close" id="closeBtn" title="Close">×</button>
+            </div>
+        </div>
+
+        <div class="terminal-body">
+            <div id="terminalOutput"></div>
+            <div class="input-line">
+                <span class="prompt">root@ci5:~#</span>
+                <input type="text" id="domainInput" autocomplete="off" spellcheck="false" autofocus>
+            </div>
         </div>
     </div>
     <script src="static/script.js"></script>

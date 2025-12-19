@@ -1,9 +1,22 @@
-/free       /scripts/bootstrap.sh          200
-/fast       /scripts/speedwiz.sh           200
-/heal       /scripts/recover.sh            200
-/self       /scripts/bone_marrow.sh        200
-/pure       /scripts/partial-uninstall.sh  200
-/true       /scripts/truth.sh              200
-/home       /scripts/tailscale.sh          200
-/hide       /scripts/paranoia_watchdog.sh  200
-/away       /scripts/uninstall.sh          200
+# --- MAIN INSTALLERS (Source: ci5 Main Repo) ---
+/free       https://raw.githubusercontent.com/dreamswag/ci5/main/install-full.sh  302
+/lite       https://raw.githubusercontent.com/dreamswag/ci5/main/install-lite.sh  302
+/true       https://raw.githubusercontent.com/dreamswag/ci5/main/validate.sh      302
+
+# --- STABLE CHANNEL (Source: GitHub Releases) ---
+/stable     https://github.com/dreamswag/ci5/releases/latest/download/install-full.sh  302
+
+# --- AUXILIARY TOOLS (Source: ci5.run Tools Repo) ---
+# Note: Ensure these files are physically in the /scripts/ folder of ci5.run repo
+/fast       https://raw.githubusercontent.com/dreamswag/ci5.run/main/scripts/speedwiz.sh          302
+/heal       https://raw.githubusercontent.com/dreamswag/ci5.run/main/scripts/recover.sh           302
+/self       https://raw.githubusercontent.com/dreamswag/ci5.run/main/scripts/bone_marrow.sh       302
+/pure       https://raw.githubusercontent.com/dreamswag/ci5.run/main/scripts/partial-uninstall.sh 302
+/hide       https://raw.githubusercontent.com/dreamswag/ci5.run/main/scripts/paranoia_watchdog.sh 302
+/away       https://raw.githubusercontent.com/dreamswag/ci5.run/main/scripts/uninstall.sh         302
+
+# --- HANDSHAKE PROTOCOL ---
+/handshake  https://raw.githubusercontent.com/dreamswag/ci5.run/main/scripts/sovereign-handshake.sh 302
+
+# --- API (Handled by Cloudflare Functions automatically) ---
+# /api/* is reserved for the /functions folder logic

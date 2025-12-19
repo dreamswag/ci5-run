@@ -1,0 +1,7 @@
+name = "ci5-counter-worker"
+main = "ci5-counter.js"
+compatibility_date = "2025-12-18"
+
+[[kv_namespaces]]
+binding = "COUNTER_KV"
+id = "378464fbb6424ef0ad556c55afaf7eae"  # Replace with actual ID from dashboard
