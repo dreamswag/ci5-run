@@ -4,7 +4,7 @@
 
 
 ## 🖲️ Purpose & Functionality
-- `index.html` - '**Phone Book**': call from **Pi 5 terminal**
+- `index.html` - '**Phone Book**': call via **Pi 5 terminal**
   
 - `/scripts/` - Shell scripts for installation and utilities
  
@@ -17,6 +17,7 @@
 > #### > **Served via `text/plain`** ( *inspect pre-bash* )
 
 > #### > **Checksummed** ( + *version-tagged* )
+
 
 
 
