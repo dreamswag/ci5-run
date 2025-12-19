@@ -4,11 +4,11 @@
 
 
 ## 🖲️ Purpose & Functionality
-- `index.html` - '**[Phone Book]((https://ci5.run))**': call via **Ci5 Terminal**
-  
-- `/scripts/` - Shell scripts for installation and utilities
+- `index.html` - Web '**Phone Book**': _dial via (_real_) **Pi 5 terminal**_
  
-- `_redirects` - Cloudflare Pages routing configuration
+- `/scripts/` - Cloud '**Services**': _installation & utility scripts_
+ 
+- `_redirects` - Packets '**Delivery**': _Cloudflare Pages routing configuration_
 
 ## 🕵🏻 Security & Auditability
 
@@ -17,6 +17,7 @@
 > #### > **Served via `text/plain`** ( *inspect pre-bash* )
 
 > #### > **Checksummed** ( + *version-tagged* )
+
 
 
 
