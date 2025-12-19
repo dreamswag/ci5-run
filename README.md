@@ -1,4 +1,4 @@
- # 📟 [ci5.run](https://ci5.run):~# curl ci5.run/free | sh ⌨️
+ # 📟 [ci5.run](https://ci5.run):~# curl ⌨️
 
 ###### 📟 [ci5.run](https://ci5.run): curl ~ 📡 [ci5.host](https://github.com/dreamswag/ci5): core ~ 🔬 [ci5.network](https://ci5.network): cert
 
@@ -17,6 +17,7 @@
 > #### > **Served via `text/plain`** ( *inspect pre-bash* )
 
 > #### > **Checksummed** ( + *version-tagged* )
+
 
 
 
