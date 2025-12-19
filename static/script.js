@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Poll every 15s
     setInterval(fetchGlobalCount, 15000);
 
-    // --- 3. RESIZE & DRAG LOGIC ---
+    // --- 3. RESIZE LOGIC ---
     const resizers = document.querySelectorAll('.resizer');
     let isResizing = false;
     
@@ -101,8 +101,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
 
+    // --- 4. DRAG LOGIC (Fixed) ---
     let isDragging = false;
-    let dragStartX, dragStartY, dragInitialLeft, dragInitialTop;
+    let dragOffsetX = 0;
+    let dragOffsetY = 0;
 
     header.addEventListener('mousedown', (e) => {
         if (e.target.tagName === 'BUTTON' || isResizing) return;
@@ -110,18 +112,36 @@ document.addEventListener('DOMContentLoaded', async () => {
         isDragging = true;
         header.style.cursor = 'grabbing';
         termWindow.style.transition = 'none';
-        
+
+        // If dragging from Maximized state, snap out of it
+        if (termWindow.classList.contains('maximized')) {
+            termWindow.classList.remove('maximized');
+            // Recenter vaguely under mouse to avoid jump
+            termWindow.style.top = (e.clientY - 20) + 'px';
+            termWindow.style.left = (e.clientX - (termWindow.offsetWidth / 2)) + 'px';
+        }
+
         const rect = termWindow.getBoundingClientRect();
-        dragStartX = e.clientX;
-        dragStartY = e.clientY;
-        dragInitialLeft = rect.left;
-        dragInitialTop = rect.top;
+        
+        // Calculate offset from Top-Left of window
+        dragOffsetX = e.clientX - rect.left;
+        dragOffsetY = e.clientY - rect.top;
+
+        // Lock size in pixels (prevents % jumps)
+        termWindow.style.width = rect.width + 'px';
+        termWindow.style.height = rect.height + 'px';
+
+        // Remove CSS centering transform and set explicit position
+        termWindow.style.transform = 'none';
+        termWindow.style.left = rect.left + 'px';
+        termWindow.style.top = rect.top + 'px';
     });
 
     document.addEventListener('mousemove', (e) => {
         if (!isDragging) return;
-        termWindow.style.left = `${dragInitialLeft + (e.clientX - dragStartX)}px`;
-        termWindow.style.top = `${dragInitialTop + (e.clientY - dragStartY)}px`;
+        // Simple Absolute Positioning
+        termWindow.style.left = (e.clientX - dragOffsetX) + 'px';
+        termWindow.style.top = (e.clientY - dragOffsetY) + 'px';
     });
 
     document.addEventListener('mouseup', () => {
@@ -132,7 +152,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    // --- 4. WINDOW CONTROLS ---
+    // --- 5. WINDOW CONTROLS ---
     minBtn.addEventListener('click', () => {
         termWindow.classList.add('minimized');
         taskbar.classList.remove('hidden');
@@ -176,7 +196,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, 250); 
     });
 
-    // --- 5. TERMINAL BOOT & COMMANDS ---
+    // --- 6. TERMINAL BOOT & COMMANDS ---
     function getBootSequence() {
         const isSov = isSovereignMode();
         
@@ -233,13 +253,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     async function init() {
-        // Start fetch in background, don't await blocking UI
-        fetchGlobalCount();
+        fetchGlobalCount(); // Non-blocking
         
         const boot = getBootSequence();
         for (let line of boot) {
             if(line === "") continue;
-            
             out.innerHTML += line + "\n";
             out.scrollTop = out.scrollHeight;
             await new Promise(r => setTimeout(r, 40));

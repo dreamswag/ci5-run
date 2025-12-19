@@ -9,6 +9,11 @@
     --font-stack: 'Piboto', 'VT323', monospace; 
 }
 
+/* --- FIX: Global Sizing Reset (Stops the jump) --- */
+* {
+    box-sizing: border-box;
+}
+
 ::selection {
     background: var(--owrt-purple);
     color: #fff;
@@ -39,14 +44,15 @@ body {
     min-width: 400px;
     min-height: 200px;
     position: absolute; 
+    /* Centering strategy */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    
     display: flex;
     flex-direction: column;
     z-index: 10;
     
-    /* Darker, "Hacker" Aesthetic */
     background: rgba(3, 3, 3, 0.92); 
     border: 1px solid #222; 
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95);
@@ -146,11 +152,7 @@ body {
     line-height: 1; 
 }
 
-.control.minimize { 
-    font-size: 18px; 
-    margin-top: 2px; 
-} 
-
+.control.minimize { font-size: 18px; margin-top: 2px; } 
 .control.maximize { font-size: 14px; }
 .control.close { font-size: 16px; }
 
@@ -248,12 +250,11 @@ body {
 #glitch { display: inline-block; color: var(--term-red); }
 .prompt { color: var(--term-green); margin-right: 12px; font-size: 20px; }
 
-/* NEW CLASS: Ghost text for the 'never to be seen again' line */
 .ghost {
     color: var(--term-dim);
-    opacity: 0.35;         /* Barely visible */
-    font-size: 0.85em;     /* Slightly smaller */
-    font-style: italic;    /* Whisper-like */
+    opacity: 0.35;
+    font-size: 0.85em;
+    font-style: italic;
     letter-spacing: 1px;
 }
 
