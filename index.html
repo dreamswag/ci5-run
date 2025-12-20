@@ -3,62 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ci5.run [DEPLOY]</title>
+    <title>ci5.run [TERMINAL]</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" type="image/png" href="/static/signal.png">
 </head>
 <body>
 
-<div class="page-container">
     <div class="nav-header">
-        📟 <a href="https://ci5.run">ci5.run</a>: curl ~ 📡 <a href="https://github.com/dreamswag/ci5">ci5.host</a>: core ~ 🧪 <a href="https://ci5.dev">ci5.dev</a>: cork ~ 🔬 <a href="https://ci5.network">ci5.network</a>: cert
+        📟 <a href="https://ci5.run">ci5.run</a>: curl ~ 
+        📡 <a href="https://github.com/dreamswag/ci5">ci5.host</a>: core ~ 
+        🧪 <a href="https://ci5.dev">ci5.dev</a>: cork ~ 
+        🔬 <a href="https://ci5.network">ci5.network</a>: cert
     </div>
 
-    <div class="hero">
-        <h1>ci5.run</h1>
-        <div class="subtitle">THE INSTALLER [CI/CD]</div>
-        <div class="desc">
-            The Deployment Interface.
-            <br>
-            Execute the bootstrap protocol or manage your appliance remotely.
-            <br>
-            <i>Type 'help' to begin.</i>
+    <div id="terminalWindow">
+        <div class="window-header" id="headerHandle">
+            <div class="title">
+                <img src="/static/signal.png" class="signal-icon" alt="ci5">
+                root@ci5:~
+            </div>
+            <div class="controls">
+                <div class="dot yellow" id="minBtn"></div>
+                <div class="dot green" id="maxBtn"></div>
+                <div class="dot red" id="closeBtn"></div>
+            </div>
+        </div>
+        
+        <div class="terminal-body" id="terminalOutput">
+            </div>
+        
+        <div class="input-line">
+            <span class="prompt">root@ci5:~$</span>
+            <input type="text" id="domainInput" autocomplete="off" autofocus spellcheck="false">
+        </div>
+
+        <div class="resizer se"></div>
+    </div>
+
+    <div id="taskbar" class="hidden">
+        <div class="task-item" id="restoreBtn">
+            <img src="/static/signal.png" style="height:10px; margin-right:5px;"> root@ci5
         </div>
     </div>
 
-    <div class="terminal-wrapper">
-        <div id="terminalWindow">
-            <div class="window-header" id="headerHandle">
-                <span class="title">root@ci5:~</span>
-                <div class="controls">
-                    <button class="control-btn" id="minBtn">_</button>
-                    <button class="control-btn" id="maxBtn">□</button>
-                    <button class="control-btn close" id="closeBtn">×</button>
-                </div>
-            </div>
-            <div class="terminal-body" id="terminalOutput">
-                </div>
-            <div class="input-line">
-                <span class="prompt">root@ci5:~$</span>
-                <input type="text" id="domainInput" autocomplete="off" autofocus>
-            </div>
-            <div class="resizer n"></div><div class="resizer e"></div><div class="resizer s"></div><div class="resizer w"></div>
-            <div class="resizer ne"></div><div class="resizer se"></div><div class="resizer sw"></div><div class="resizer nw"></div>
-        </div>
-    </div>
-
-    <div class="footer">
-        147 741
-        <br>
-        <span class="dim">UPLINK SECURE</span>
-    </div>
-</div>
-
-<div id="taskbar" class="hidden">
-    <div class="task-item" id="restoreBtn">
-        <span class="icon">📟</span> root@ci5
-    </div>
-</div>
-
-<script src="/static/script.js"></script>
+    <script src="/static/script.js"></script>
 </body>
 </html>

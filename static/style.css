@@ -1,160 +1,127 @@
-/* --- SHARED REPOVERSE THEME --- */
 :root {
     --bg: #050505;
-    --term: #0f0f0f;
+    --window-bg: rgba(12, 12, 12, 0.95);
     --text: #e0e0e0;
     --dim: #666;
-    --purple: #b98eff;
     --green: #50fa7b;
+    --purple: #bd93f9;
+    --cyan: #8be9fd;
     --orange: #ffb86c;
     --red: #ff5555;
-    --cyan: #8be9fd;
     --border: #333;
+    --font-stack: 'Menlo', 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
 body {
     background-color: var(--bg);
     color: var(--text);
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--font-stack);
     margin: 0;
-    padding: 20px;
     height: 100vh;
-    box-sizing: border-box;
-    overflow: hidden; /* Prevent body scroll, terminal handles itself */
-}
-
-a { text-decoration: none; color: inherit; }
-
-/* --- PAGE LAYOUT (Matches ci5.dev) --- */
-.page-container {
-    max-width: 900px;
-    width: 100%;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* CRT Scanline Effect (Subtle) */
+    background-image: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 2px, 3px 100%;
 }
 
+a { text-decoration: none; color: inherit; transition: color 0.2s; }
+a:hover { color: var(--green); text-decoration: underline; }
+
+/* UNIVERSAL HEADER (The Repoverse Bar) */
 .nav-header {
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    font-size: 0.9em;
-    text-align: center;
+    position: fixed;
+    top: 20px;
+    font-size: 0.85em;
     color: var(--dim);
-    flex-shrink: 0;
-}
-.nav-header a:hover { color: var(--text); text-decoration: underline; }
-
-.hero {
-    text-align: left;
-    margin-bottom: 20px;
-    border-left: 2px solid var(--green); /* Green for Run/Go */
-    padding-left: 20px;
-    flex-shrink: 0;
-}
-h1 { margin: 0; font-size: 2em; letter-spacing: -1px; }
-.subtitle { color: var(--green); font-weight: bold; margin-top: 5px; }
-.desc { color: var(--dim); max-width: 600px; margin-top: 10px; line-height: 1.4; }
-
-.footer {
-    text-align: center;
-    color: var(--dim);
-    font-size: 0.8em;
-    margin-top: auto;
-    padding-top: 20px;
+    letter-spacing: 1px;
+    z-index: 100;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
-/* --- TERMINAL WINDOW (The Feature) --- */
-.terminal-wrapper {
-    flex-grow: 1;
-    position: relative;
-    /* The terminal floats in this space */
-}
-
+/* TERMINAL WINDOW */
 #terminalWindow {
     width: 800px;
-    height: 400px;
-    background-color: rgba(10, 10, 10, 0.95);
-    border: 1px solid var(--dim);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    height: 480px;
+    background-color: var(--window-bg);
+    border: 1px solid var(--border);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    border-radius: 6px;
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 4px;
-    overflow: hidden;
-    transition: opacity 0.3s, transform 0.1s;
-    backdrop-filter: blur(5px);
+    position: relative;
+    backdrop-filter: blur(4px);
+    transition: opacity 0.2s, transform 0.1s;
 }
 
+/* HEADER BAR */
 .window-header {
-    background-color: #1a1a1a;
-    padding: 8px 15px;
+    background: #151515;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #333;
     user-select: none;
-    cursor: default;
+    border-radius: 5px 5px 0 0;
 }
+.title { font-size: 0.8em; color: var(--dim); display: flex; align-items: center; gap: 8px; }
+.signal-icon { height: 12px; opacity: 0.7; }
 
-.title { font-size: 0.9em; color: #ccc; }
 .controls { display: flex; gap: 8px; }
-.control-btn {
-    background: none; border: none; color: #666; cursor: pointer; font-size: 1em; padding: 0 4px;
-}
-.control-btn:hover { color: #fff; }
-.control-btn.close:hover { color: var(--red); }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--dim); cursor: pointer; transition: background 0.2s; }
+.dot.red:hover { background: var(--red); }
+.dot.yellow:hover { background: var(--orange); }
+.dot.green:hover { background: var(--green); }
 
+/* TERMINAL BODY */
 .terminal-body {
     flex: 1;
     padding: 15px;
     overflow-y: auto;
-    font-size: 0.95em;
-    line-height: 1.4;
-    color: #e0e0e0;
+    font-size: 0.9em;
+    line-height: 1.5;
+    color: var(--text);
     scrollbar-width: thin;
-    scrollbar-color: #444 #1a1a1a;
+    scrollbar-color: var(--border) transparent;
 }
+.terminal-body::-webkit-scrollbar { width: 6px; }
+.terminal-body::-webkit-scrollbar-thumb { background: var(--border); }
 
+/* INPUT */
 .input-line {
     display: flex;
     padding: 10px 15px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background: rgba(0,0,0,0.2);
 }
 .prompt { color: var(--green); margin-right: 10px; font-weight: bold; }
 input {
-    background: transparent; border: none; color: #fff; font-family: inherit; font-size: inherit; flex: 1; outline: none;
+    background: transparent; border: none; color: #fff; 
+    font-family: var(--font-stack); font-size: inherit; flex: 1; outline: none;
 }
 
-/* --- UTILS --- */
+/* RESIZERS */
+.resizer { position: absolute; width: 15px; height: 15px; z-index: 10; }
+.resizer.se { bottom: -5px; right: -5px; cursor: se-resize; }
+
+/* UTILS */
 .green { color: var(--green); }
 .purple { color: var(--purple); }
-.red { color: var(--red); }
 .cyan { color: var(--cyan); }
 .orange { color: var(--orange); }
+.red { color: var(--red); }
 .dim { color: var(--dim); }
 .white { color: #fff; }
 
-/* Minimized State */
-#terminalWindow.minimized {
-    display: none !important;
-}
-#taskbar {
-    position: fixed; bottom: 20px; left: 20px;
-    display: flex; gap: 10px;
-}
-.task-item {
-    background: #1a1a1a; border: 1px solid var(--dim); padding: 8px 15px;
-    cursor: pointer; border-radius: 4px; font-size: 0.9em;
+/* MINIMIZED */
+.minimized { display: none !important; }
+#taskbar { position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; }
+.task-item { 
+    background: #151515; padding: 5px 15px; border: 1px solid var(--border); 
+    border-radius: 4px; font-size: 0.8em; cursor: pointer; color: var(--dim);
 }
 .task-item:hover { border-color: var(--green); color: var(--green); }
-.hidden { display: none !important; }
-
-/* Resizers (Corner Grabs) */
-.resizer { position: absolute; width: 10px; height: 10px; background: transparent; z-index: 10; }
-.resizer.se { bottom: 0; right: 0; cursor: se-resize; }
-/* ... (Add other directions if needed, SE is most important) ... */
+.hidden { display: none; }
