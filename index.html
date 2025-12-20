@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ci5.run</title>
-    <link rel="stylesheet" href="static/style.css">
-    <link rel="icon" type="image/png" href="static/signal.png">
+    <title>ci5.run [TERMINAL]</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" type="image/png" href="/static/signal.png">
 </head>
 <body>
 
@@ -17,19 +17,19 @@
     </div>
 
     <div id="terminalWindow">
-        <div class="header" id="headerHandle">
+        <div class="window-header" id="headerHandle">
             <div class="title">
-                <img src="static/signal.png" class="icon" alt="signal">
+                <img src="/static/signal.png" class="signal-icon" alt="ci5">
                 root@ci5:~
             </div>
             <div class="controls">
-                <div class="dot green" id="minBtn"></div>
-                <div class="dot yellow" id="maxBtn"></div>
+                <div class="dot yellow" id="minBtn"></div>
+                <div class="dot green" id="maxBtn"></div>
                 <div class="dot red" id="closeBtn"></div>
             </div>
         </div>
         
-        <div class="body" id="terminalOutput">
+        <div class="terminal-body" id="terminalOutput">
             </div>
         
         <div class="input-line">
@@ -37,16 +37,15 @@
             <input type="text" id="domainInput" autocomplete="off" autofocus spellcheck="false">
         </div>
 
-        <div class="resizer n"></div><div class="resizer e"></div><div class="resizer s"></div><div class="resizer w"></div>
-        <div class="resizer ne"></div><div class="resizer se"></div><div class="resizer sw"></div><div class="resizer nw"></div>
+        <div class="resizer se"></div>
     </div>
 
     <div id="taskbar" class="hidden">
         <div class="task-item" id="restoreBtn">
-            <img src="static/signal.png" class="task-icon"> root@ci5
+            <img src="/static/signal.png" style="height:10px; margin-right:5px;"> root@ci5
         </div>
     </div>
 
-    <script src="static/script.js"></script>
+    <script src="/static/script.js"></script>
 </body>
 </html>
