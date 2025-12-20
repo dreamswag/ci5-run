@@ -115,7 +115,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             isSov ? "<span class='purple'>[ SOVEREIGN MIRROR ACTIVE ]</span>" : "",
             `OASIS CHECKPOINT: <span class='purple' id='live-status'>${globalCount.toLocaleString()}</span> SOVEREIGNS`,
             "<span class='ghost'>...send word if you make it</span>", 
-            
             "\n<span class='dim'>COMMAND PROTOCOLS</span>",
             "<span class='dim'>--------------------</span>",
             `  > <span class='green'>FREE</span>       ${c_free}`, 

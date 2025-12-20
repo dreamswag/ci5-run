@@ -1,271 +1,160 @@
+/* --- SHARED REPOVERSE THEME --- */
 :root {
-    --term-bg: #000000;
-    --term-green: #8ae234; 
-    --owrt-cyan: #00e5ff;  
-    --owrt-purple: #75507b; 
-    --term-red: #cc0000;   
-    --term-white: #d3d7cf;  
-    --term-dim: #555753;   
-    --font-stack: 'Piboto', 'VT323', monospace; 
-}
-
-/* --- FIX: Global Sizing Reset (Stops the jump) --- */
-* {
-    box-sizing: border-box;
-}
-
-::selection {
-    background: var(--owrt-purple);
-    color: #fff;
-    text-shadow: none;
+    --bg: #050505;
+    --term: #0f0f0f;
+    --text: #e0e0e0;
+    --dim: #666;
+    --purple: #b98eff;
+    --green: #50fa7b;
+    --orange: #ffb86c;
+    --red: #ff5555;
+    --cyan: #8be9fd;
+    --border: #333;
 }
 
 body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Courier New', Courier, monospace;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     height: 100vh;
-    overflow: hidden;
-    background-color: #000; 
-    background-image: url('signal.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    font-family: var(--font-stack);
-    letter-spacing: 1.5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent body scroll, terminal handles itself */
 }
 
-/* --- Container & Resize Logic --- */
-.terminal-container {
-    width: 900px;
-    height: 85vh;
-    min-width: 400px;
-    min-height: 200px;
-    position: absolute; 
-    /* Centering strategy */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
+a { text-decoration: none; color: inherit; }
+
+/* --- PAGE LAYOUT (Matches ci5.dev) --- */
+.page-container {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    z-index: 10;
-    
-    background: rgba(3, 3, 3, 0.92); 
-    border: 1px solid #222; 
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95);
-    border-radius: 6px 6px 0 0;
-    backdrop-filter: blur(2px); 
-    
-    transition: opacity 0.3s, transform 0.1s; 
-    will-change: top, left, width, height, transform;
-}
-
-.terminal-container.maximized {
-    width: 100% !important;
-    height: 100% !important;
-    top: 0 !important;
-    left: 0 !important;
-    transform: none !important;
-    border-radius: 0;
-}
-
-.terminal-container.minimized { display: none; }
-
-/* Resize Handles */
-.resizer { position: absolute; z-index: 100; }
-.resizer.n { top: -5px; left: 0; right: 0; height: 10px; cursor: ns-resize; }
-.resizer.s { bottom: -5px; left: 0; right: 0; height: 10px; cursor: ns-resize; }
-.resizer.e { right: -5px; top: 0; bottom: 0; width: 10px; cursor: ew-resize; }
-.resizer.w { left: -5px; top: 0; bottom: 0; width: 10px; cursor: ew-resize; }
-.resizer.ne { top: -5px; right: -5px; width: 15px; height: 15px; cursor: ne-resize; }
-.resizer.nw { top: -5px; left: -5px; width: 15px; height: 15px; cursor: nw-resize; }
-.resizer.se { bottom: -5px; right: -5px; width: 15px; height: 15px; cursor: se-resize; }
-.resizer.sw { bottom: -5px; left: -5px; width: 15px; height: 15px; cursor: sw-resize; }
-
-/* --- Header & Controls --- */
-.terminal-header {
-    background: linear-gradient(to bottom, #1a1a1a 0%, #050505 100%);
-    height: 34px;
-    display: flex;
-    align-items: center; 
-    justify-content: space-between;
-    padding: 0 6px 0 2px;
-    border-bottom: 1px solid #000; 
-    flex-shrink: 0;
-    cursor: default; 
-    user-select: none;
-}
-
-.terminal-tab {
-    background-color: #080808; 
-    color: var(--term-white);
-    padding: 0 20px 0 12px;
-    border-radius: 6px 6px 0 0;
-    margin-top: 6px;
-    border: 1px solid #222; 
-    border-bottom: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    height: 28px;
-    position: relative;
-    top: 1px;
-}
-
-.terminal-tab::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: #080808; 
-}
-
-.tab-icon { font-size: 13px; opacity: 0.7; }
-.tab-text { font-family: sans-serif; font-size: 12px; font-weight: bold; letter-spacing: 0.5px; color: #ccc; }
-
-.window-controls {
-    display: flex;
-    gap: 6px;
-    align-items: center;
     height: 100%;
 }
 
-.control {
-    background: transparent;
-    border: none;
-    color: #666; 
-    font-size: 14px;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 3px;
-    cursor: pointer;
-    padding: 0;
-    margin: 0;
-    line-height: 1; 
+.nav-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    text-align: center;
+    color: var(--dim);
+    flex-shrink: 0;
+}
+.nav-header a:hover { color: var(--text); text-decoration: underline; }
+
+.hero {
+    text-align: left;
+    margin-bottom: 20px;
+    border-left: 2px solid var(--green); /* Green for Run/Go */
+    padding-left: 20px;
+    flex-shrink: 0;
+}
+h1 { margin: 0; font-size: 2em; letter-spacing: -1px; }
+.subtitle { color: var(--green); font-weight: bold; margin-top: 5px; }
+.desc { color: var(--dim); max-width: 600px; margin-top: 10px; line-height: 1.4; }
+
+.footer {
+    text-align: center;
+    color: var(--dim);
+    font-size: 0.8em;
+    margin-top: auto;
+    padding-top: 20px;
 }
 
-.control.minimize { font-size: 18px; margin-top: 2px; } 
-.control.maximize { font-size: 14px; }
-.control.close { font-size: 16px; }
+/* --- TERMINAL WINDOW (The Feature) --- */
+.terminal-wrapper {
+    flex-grow: 1;
+    position: relative;
+    /* The terminal floats in this space */
+}
 
-.control:hover { background: rgba(255,255,255,0.05); color: #fff; }
-.control.close:hover { background: #800000; } 
-
-/* --- Body & Content --- */
-.terminal-body {
-    padding: 10px 10px 10px 15px; 
+#terminalWindow {
+    width: 800px;
+    height: 400px;
+    background-color: rgba(10, 10, 10, 0.95);
+    border: 1px solid var(--dim);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
     overflow: hidden;
-    position: relative;
+    transition: opacity 0.3s, transform 0.1s;
+    backdrop-filter: blur(5px);
 }
 
-#terminalOutput {
-    color: var(--term-white); 
-    font-size: 20px;
-    line-height: 1.3;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    flex-grow: 1;
+.window-header {
+    background-color: #1a1a1a;
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    user-select: none;
+    cursor: default;
+}
+
+.title { font-size: 0.9em; color: #ccc; }
+.controls { display: flex; gap: 8px; }
+.control-btn {
+    background: none; border: none; color: #666; cursor: pointer; font-size: 1em; padding: 0 4px;
+}
+.control-btn:hover { color: #fff; }
+.control-btn.close:hover { color: var(--red); }
+
+.terminal-body {
+    flex: 1;
+    padding: 15px;
     overflow-y: auto;
-    margin-bottom: 10px;
-    padding-right: 8px; 
+    font-size: 0.95em;
+    line-height: 1.4;
+    color: #e0e0e0;
+    scrollbar-width: thin;
+    scrollbar-color: #444 #1a1a1a;
 }
 
 .input-line {
     display: flex;
-    align-items: center;
-    padding: 5px 0;
+    padding: 10px 15px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.prompt { color: var(--green); margin-right: 10px; font-weight: bold; }
+input {
+    background: transparent; border: none; color: #fff; font-family: inherit; font-size: inherit; flex: 1; outline: none;
 }
 
-/* Scrollbars */
-#terminalOutput::-webkit-scrollbar { width: 8px; } 
-#terminalOutput::-webkit-scrollbar-track { 
-    background: transparent; 
-    border-left: 1px solid #111; 
-}
-#terminalOutput::-webkit-scrollbar-thumb { 
-    background: #333; 
-    border: 1px solid #000; 
-    border-radius: 4px; 
-    background-clip: content-box; 
-}
-#terminalOutput::-webkit-scrollbar-thumb:hover { background: #555; background-clip: content-box; }
+/* --- UTILS --- */
+.green { color: var(--green); }
+.purple { color: var(--purple); }
+.red { color: var(--red); }
+.cyan { color: var(--cyan); }
+.orange { color: var(--orange); }
+.dim { color: var(--dim); }
+.white { color: #fff; }
 
-/* Taskbar */
+/* Minimized State */
+#terminalWindow.minimized {
+    display: none !important;
+}
 #taskbar {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(10, 10, 10, 0.95);
-    padding: 8px;
-    border-radius: 12px;
-    border: 1px solid #333;
-    z-index: 100;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.8);
-    display: flex;
+    position: fixed; bottom: 20px; left: 20px;
+    display: flex; gap: 10px;
 }
+.task-item {
+    background: #1a1a1a; border: 1px solid var(--dim); padding: 8px 15px;
+    cursor: pointer; border-radius: 4px; font-size: 0.9em;
+}
+.task-item:hover { border-color: var(--green); color: var(--green); }
 .hidden { display: none !important; }
 
-.dock-icon {
-    width: 42px;
-    height: 42px;
-    background: #000;
-    border: 1px solid var(--owrt-cyan);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 18px;
-    color: var(--term-green);
-    transition: transform 0.2s;
-}
-.dock-icon:hover { transform: scale(1.1); box-shadow: 0 0 10px var(--owrt-cyan); }
-
-/* Animation */
-@keyframes closeWindow {
-    0% { opacity: 1; transform: scale(1); }
-    100% { opacity: 0; transform: scale(0.9); }
-}
-.closing-anim { animation: closeWindow 0.25s forwards ease-in; }
-
-/* Utils */
-.cyan { color: var(--owrt-cyan); }
-.purple { color: var(--owrt-purple); }
-.green { color: var(--term-green); }
-.red { color: var(--term-red); }
-.dim { color: var(--term-dim); }
-.white { color: var(--term-white); }
-#glitch { display: inline-block; color: var(--term-red); }
-.prompt { color: var(--term-green); margin-right: 12px; font-size: 20px; }
-
-.ghost {
-    color: var(--term-dim);
-    opacity: 0.35;
-    font-size: 0.85em;
-    font-style: italic;
-    letter-spacing: 1px;
-}
-
-#domainInput {
-    background: transparent;
-    border: none;
-    color: var(--owrt-cyan); 
-    font-family: var(--font-stack);
-    font-size: 20px;
-    flex-grow: 1;
-    outline: none;
-    letter-spacing: 1.5px;
-    caret-color: var(--owrt-purple); 
-}
+/* Resizers (Corner Grabs) */
+.resizer { position: absolute; width: 10px; height: 10px; background: transparent; z-index: 10; }
+.resizer.se { bottom: 0; right: 0; cursor: se-resize; }
+/* ... (Add other directions if needed, SE is most important) ... */

@@ -3,47 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ci5.run:~# because irrational wood</title>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="static/style.css">
+    <title>ci5.run [DEPLOY]</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <div id="taskbar" class="hidden">
-        <div class="dock-icon" id="restoreBtn" title="Restore Terminal">
-            <span class="dock-glitch">>_</span>
+
+<div class="page-container">
+    <div class="nav-header">
+        📟 <a href="https://ci5.run">ci5.run</a>: curl ~ 📡 <a href="https://github.com/dreamswag/ci5">ci5.host</a>: core ~ 🧪 <a href="https://ci5.dev">ci5.dev</a>: cork ~ 🔬 <a href="https://ci5.network">ci5.network</a>: cert
+    </div>
+
+    <div class="hero">
+        <h1>ci5.run</h1>
+        <div class="subtitle">THE INSTALLER [CI/CD]</div>
+        <div class="desc">
+            The Deployment Interface.
+            <br>
+            Execute the bootstrap protocol or manage your appliance remotely.
+            <br>
+            <i>Type 'help' to begin.</i>
         </div>
     </div>
 
-    <div class="terminal-container" id="terminalWindow">
-        <div class="resizer n"></div>
-        <div class="resizer e"></div>
-        <div class="resizer s"></div>
-        <div class="resizer w"></div>
-        <div class="resizer ne"></div>
-        <div class="resizer nw"></div>
-        <div class="resizer se"></div>
-        <div class="resizer sw"></div>
-
-        <div class="terminal-header" id="headerHandle">
-            <div class="terminal-tab active-tab">
-                <span class="tab-icon"></span> 
-                <span class="tab-text">root@ci5:~</span>
+    <div class="terminal-wrapper">
+        <div id="terminalWindow">
+            <div class="window-header" id="headerHandle">
+                <span class="title">root@ci5:~</span>
+                <div class="controls">
+                    <button class="control-btn" id="minBtn">_</button>
+                    <button class="control-btn" id="maxBtn">□</button>
+                    <button class="control-btn close" id="closeBtn">×</button>
+                </div>
             </div>
-            <div class="window-controls">
-                <button class="control minimize" id="minBtn" title="Minimize">&minus;</button>
-                <button class="control maximize" id="maxBtn" title="Maximize">□</button>
-                <button class="control close" id="closeBtn" title="Close">×</button>
-            </div>
-        </div>
-
-        <div class="terminal-body">
-            <div id="terminalOutput"></div>
+            <div class="terminal-body" id="terminalOutput">
+                </div>
             <div class="input-line">
-                <span class="prompt">root@ci5:~#</span>
-                <input type="text" id="domainInput" autocomplete="off" spellcheck="false" autofocus>
+                <span class="prompt">root@ci5:~$</span>
+                <input type="text" id="domainInput" autocomplete="off" autofocus>
             </div>
+            <div class="resizer n"></div><div class="resizer e"></div><div class="resizer s"></div><div class="resizer w"></div>
+            <div class="resizer ne"></div><div class="resizer se"></div><div class="resizer sw"></div><div class="resizer nw"></div>
         </div>
     </div>
-    <script src="static/script.js"></script>
+
+    <div class="footer">
+        147 741
+        <br>
+        <span class="dim">UPLINK SECURE</span>
+    </div>
+</div>
+
+<div id="taskbar" class="hidden">
+    <div class="task-item" id="restoreBtn">
+        <span class="icon">📟</span> root@ci5
+    </div>
+</div>
+
+<script src="/static/script.js"></script>
 </body>
 </html>
