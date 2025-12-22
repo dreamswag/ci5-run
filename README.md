@@ -12,9 +12,8 @@
 | `/TRUE` | `dock_guard.sh` | Toggle Docker Auto-Update (Full Stack) |
 | `/VOID` | `uninstall.sh` | Remove Ci5 |
 
----
 
-## ⚡ Execute (on Pi 5 terminal)
+## ⚡ Execute (on Pi 5)
 
 ```bash
 curl ci5.run/free | sh
