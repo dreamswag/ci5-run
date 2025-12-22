@@ -22,10 +22,9 @@ curl ci5.run/free | sh
 |-------|--------|---------|
 | `/FREE` | `install-full.sh` | Full Stack (IDS + Corks) |
 | `/4EVR` | `install-lite.sh` | Minimal (DNS + SQM only) |
-| `/WARD` | `dock_guard.sh` | Toggle Docker Auto-Update (Full Stack) |
-| `/RRUL` | `auto_rrul.sh` | Initialise RRUL Test |
+| `/CORK` | `cork.sh` | Registry Search (Corks) |
 | `/FAST` | `speed_wizard.sh` | Bufferbloat SQM Configuration (Auto + Manual) |
-| `/SAFE` | `emergency_recovery.sh` | Restore Internet Access |
+| `/TRUE` | `dock_guard.sh` | Toggle Docker Auto-Update (Full Stack) |
 | `/VOID` | `uninstall.sh` | Remove Ci5 |
 
 ---
