@@ -342,29 +342,33 @@ body {
         background-size: 300%;
         background-position: center 30%;
         padding: 0;
+        /* Align terminal to top instead of center */
+        align-items: flex-start;
+        padding-top: 40px;
     }
     
     .terminal-container {
-        width: 100vw;
-        height: 100vh;
-        height: 100dvh;
-        top: 0;
-        left: 0;
-        transform: none;
-        border-radius: 0;
-        border: none;
+        width: 96vw;
+        height: 50vh; /* Half screen height */
+        height: 50dvh;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 8px;
+        border: 1px solid #333;
         min-width: unset;
+        position: relative;
     }
     
     .terminal-header {
-        height: 40px;
+        height: 36px;
         padding: 0 10px;
         -webkit-app-region: drag;
     }
     
     .terminal-tab {
         padding: 0 10px;
-        height: 30px;
+        height: 28px;
         gap: 5px;
     }
     
@@ -408,9 +412,12 @@ body {
         white-space: nowrap;
     }
     
+    /* Prevent iOS zoom on input focus - use 16px minimum */
     #domainInput {
-        font-size: 13px;
+        font-size: 16px;
         letter-spacing: 0.5px;
+        /* Prevent zoom on focus */
+        touch-action: manipulation;
     }
     
     .input-line {
@@ -424,9 +431,9 @@ body {
         display: none !important;
     }
     
-    /* Hide maximize button on mobile - already fullscreen */
+    /* Show maximize button on mobile for expand option */
     .control.maximize {
-        display: none;
+        display: flex;
     }
     
     #taskbar {
@@ -447,13 +454,18 @@ body {
 
 /* Extra small phones (iPhone SE, etc.) */
 @media (max-width: 375px) {
+    .terminal-container {
+        height: 45vh;
+        height: 45dvh;
+    }
+    
     #terminalOutput {
         font-size: 12px;
         line-height: 1.5;
     }
     
     .prompt, #domainInput {
-        font-size: 12px;
+        font-size: 16px; /* Keep 16px to prevent iOS zoom */
     }
     
     .tab-text {
