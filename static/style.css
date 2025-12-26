@@ -49,7 +49,7 @@ html, body {
     /* 74.1% of original size */
     height: 199px; 
     width: auto;
-    image-rendering: pixelated;
+    /* image-rendering: pixelated; */
 }
 
 /* ─────────────────────────────────────────────────────────────
