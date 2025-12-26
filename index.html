@@ -7,29 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=VT323&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="static/run.png">
     <link rel="stylesheet" href="static/style.css">
-    <style>
-        /* Refined footer signature to prevent extra scroll space */
-        .footer-sig {
-            position: absolute;
-            bottom: 17.4px; /* Positions it in the existing bottom empty space */
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            color: #555;   /* Grey text color */
-            opacity: 0.096;   /* Extremely low opacity for a faint look */
-            letter-spacing: 4px;
-            white-space: nowrap;
-            pointer-events: none;
-            text-align: center;
-        }
-
-        /* Ensure main container doesn't create extra height */
-        body, html {
-            overflow: hidden; 
-            height: 100%;
-        }
-    </style>
 </head>
 <body>
     <header class="header">
@@ -103,10 +80,6 @@
             </div>
         </div>
     </main>
-
-    <div class="footer-sig">
-        
-    </div>
 
     <div class="toast" id="toast">Copied!</div>
     <script src="static/script.js"></script>
