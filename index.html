@@ -7,6 +7,29 @@
     <link href="https://fonts.googleapis.com/css2?family=VT323&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="static/run.png">
     <link rel="stylesheet" href="static/style.css">
+    <style>
+        /* Refined footer signature to prevent extra scroll space */
+        .footer-sig {
+            position: absolute;
+            bottom: 17.4px; /* Positions it in the existing bottom empty space */
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: #555;   /* Grey text color */
+            opacity: 0.096;   /* Extremely low opacity for a faint look */
+            letter-spacing: 4px;
+            white-space: nowrap;
+            pointer-events: none;
+            text-align: center;
+        }
+
+        /* Ensure main container doesn't create extra height */
+        body, html {
+            overflow: hidden; 
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -70,9 +93,9 @@
         </div>
 
         <div class="terminal">
-            <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">root@ci5:~</span></div>
+            <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">| v7.4-RC-1</span></div>
             <div class="term-body">
-                <div class="boot"><span class="tg">CI5.RUN</span> <span class="td">v7.4-RC-1</span> <span class="tg">UPLINK ESTABLISHED.</span></div>
+                <div class="boot"><span class="tg">🃏</span> <span class="td"></span> <span class="tg">UPLINK ESTABLISHED.</span></div>
                 <div class="boot">IDENTITY: [<span class="tr">TELEMETRY_ERR:41</span><span id="glitch">0</span>]</div>
                 <div class="boot ghost">"We cannot expect governments, corporations, or other large, faceless organizations to grant us privacy out of their beneficence. It is to their advantage to speak of us, and we should expect that they will speak."</div>
                 <div id="output"></div>
@@ -80,6 +103,10 @@
             </div>
         </div>
     </main>
+
+    <div class="footer-sig">
+        
+    </div>
 
     <div class="toast" id="toast">Copied!</div>
     <script src="static/script.js"></script>

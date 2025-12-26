@@ -24,13 +24,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const COMMANDS = {
         free: { 
             cmd: 'curl ci5.run/free | sh', 
-            summary: '[Full Stack]',
-            desc: '[Installs Docker, Suricata IDS, AdGuard Home, and CrowdSec. Maximum security & monitoring.]' 
+            summary: 'Install Full Stack',
+            desc: '[Docker: Suricata IDS, AdGuard Home, CrowdSec, Ntopng & Redis, and Homepage. Maximum security & monitoring.]' 
         },
         '4evr': { 
             cmd: 'curl ci5.run/4evr | sh', 
-            summary: '[Sovereign Stack]',
-            desc: '[No Docker. Includes kernel hardening, Unbound DNS, and CAKE SQM. Pure efficiency.]' 
+            summary: 'Install Lite Stack',
+            desc: '[No Docker. Kernel Hardening, Firewall Zones, Unbound DNS, and CAKE SQM. Maximum routing efficiency.]' 
         },
         heal: { 
             cmd: 'curl ci5.run/heal | sh', 
