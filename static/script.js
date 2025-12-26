@@ -22,27 +22,114 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const COMMANDS = {
-        free: { cmd: 'curl ci5.run/free | sh', desc: '[Full Stack] Lite Features + Docker (Suricata + CrowdSec + AdGuard Home + Ntopng & Redis + Homepage) + Corks' },
-        '4evr': { cmd: 'curl ci5.run/4evr | sh', desc: '[Lite Stack] No Docker + Kernel Performance Tweaks + Local Firewall Zones + Unbound DNS + CAKE SQM' },
-        heal: { cmd: 'curl ci5.run/heal | sh', desc: 'Verify + restore base scripts from ci5.host' },
-        rescue: { cmd: 'curl ci5.run/rescue | sh', desc: 'Force public DNS (1.1.1.1, 9.9.9.9)' },
-        status: { cmd: 'curl ci5.run/status | sh', desc: 'Quick health check, exit 0 = healthy' },
-        mullvad: { cmd: 'curl ci5.run/mullvad | sh', desc: 'Mullvad WireGuard + killswitch' },
-        tailscale: { cmd: 'curl ci5.run/tailscale | sh', desc: 'Tailscale mesh network' },
-        hybrid: { cmd: 'curl ci5.run/hybrid | sh', desc: 'Tailscale ingress → Mullvad egress' },
-        travel: { cmd: 'curl ci5.run/travel | sh', desc: 'MAC clone + TTL fix + captive portal' },
-        focus: { cmd: 'curl ci5.run/focus | sh', desc: 'Temporary domain blocking with timer' },
-        wipe: { cmd: 'curl ci5.run/wipe | sh', desc: 'Shred keys, flush logs, fstrim' },
-        alert: { cmd: 'curl ci5.run/alert | sh', desc: 'ntfy.sh push notifications' },
-        ddns: { cmd: 'curl ci5.run/ddns | sh', desc: 'Dynamic DNS + WireGuard IP sync' },
-        paranoia: { cmd: 'curl ci5.run/paranoia | sh', desc: 'Kill WAN if Suricata dies (FREE only)' },
-        backup: { cmd: 'curl ci5.run/backup | sh', desc: 'Encrypted config export' },
-        update: { cmd: 'curl ci5.run/update | sh', desc: 'GPG-verified self-update' },
-        self: { cmd: 'sh bone_marrow.sh', desc: 'Full diagnostic dump', local: true },
-        fast: { cmd: 'sh speed_wizard.sh', desc: 'SQM/CAKE auto-tune', local: true },
-        true: { cmd: 'sh validate.sh', desc: 'Post-install validation', local: true },
-        away: { cmd: 'curl ci5.run/away | sh', desc: 'Full uninstall' },
-        pure: { cmd: 'curl ci5.run/pure | sh', desc: 'Selective component removal' }
+        free: { 
+            cmd: 'curl ci5.run/free | sh', 
+            summary: '[Full Stack]',
+            desc: '[Installs Docker, Suricata IDS, AdGuard Home, and CrowdSec. Maximum security & monitoring.]' 
+        },
+        '4evr': { 
+            cmd: 'curl ci5.run/4evr | sh', 
+            summary: '[Sovereign Stack]',
+            desc: '[No Docker. Includes kernel hardening, Unbound DNS, and CAKE SQM. Pure efficiency.]' 
+        },
+        heal: { 
+            cmd: 'curl ci5.run/heal | sh', 
+            summary: 'System Integrity Repair',
+            desc: '[Verifies local scripts against trusted server checksums. Automatically restores missing or corrupted files to fix broken systems.]' 
+        },
+        rescue: { 
+            cmd: 'curl ci5.run/rescue | sh', 
+            summary: 'Emergency DNS Bypass',
+            desc: '[Forces the router to use public resolvers (1.1.1.1) to restore internet access when local DNS fails but connection is active.]' 
+        },
+        status: { 
+            cmd: 'curl ci5.run/status | sh', 
+            summary: 'Quick Health Check',
+            desc: '[Runs a simplified pass/fail diagnostic on internet connectivity, firewall rules, and services. Useful for a quick status verification.]' 
+        },
+        mullvad: { 
+            cmd: 'curl ci5.run/mullvad | sh', 
+            summary: 'WireGuard Privacy Shield',
+            desc: '[Configure Mullvad VPN with an automatic Killswitch. If the VPN drops, all traffic is blocked to prevent IP leaks.]' 
+        },
+        tailscale: { 
+            cmd: 'curl ci5.run/tailscale | sh', 
+            summary: 'Mesh Network Node',
+            desc: '[Connects your router to Tailscale for secure remote access. Reach your home devices from anywhere without opening firewall ports.]' 
+        },
+        hybrid: { 
+            cmd: 'curl ci5.run/hybrid | sh', 
+            summary: 'Split-Horizon Routing',
+            desc: '[Directs incoming remote access through Tailscale, while forcing all outgoing home traffic through the anonymous Mullvad VPN.]' 
+        },
+        travel: { 
+            cmd: 'curl ci5.run/travel | sh', 
+            summary: 'Hotel Wi-Fi Bypass',
+            desc: '[Clones your MAC address and modifies TTL to mimic a single device. Essential for getting past captive portals at hotels & airports.]' 
+        },
+        focus: { 
+            cmd: 'curl ci5.run/focus | sh', 
+            summary: 'Productivity Timer',
+            desc: '[Temporarily blocks distracting sites (Social, Streaming) for a set duration. Automatically unblocks them when the timer expires.]' 
+        },
+        wipe: { 
+            cmd: 'curl ci5.run/wipe | sh', 
+            summary: 'Digital Shredder',
+            desc: '[Securely overwrites VPN keys, wipes shell history, flushes logs, and trims storage. Use before crossing borders or selling device.]' 
+        },
+        alert: { 
+            cmd: 'curl ci5.run/alert | sh', 
+            summary: 'Mobile Notifications',
+            desc: '[Configures ntfy.sh to send push alerts to your phone. Get notified instantly of intrusion attempts, errors, or reboots.]' 
+        },
+        ddns: { 
+            cmd: 'curl ci5.run/ddns | sh', 
+            summary: 'Dynamic IP Sync',
+            desc: '[Updates DNS records and re-syncs WireGuard peers when your home IP changes. Keeps VPNs connected on dynamic residential lines.]' 
+        },
+        paranoia: { 
+            cmd: 'curl ci5.run/paranoia | sh', 
+            summary: '[FREE Only] IDS Dead-Man Switch',
+            desc: '[Monitors Suricata Intrusion Detection. If the scanner dies, it kills the internet connection to ensure no un-scanned traffic.]' 
+        },
+        backup: { 
+            cmd: 'curl ci5.run/backup | sh', 
+            summary: 'Hardware-Locked Export',
+            desc: '[Creates an encrypted config backup bound to this specific device\'s hardware ID. Cannot be decrypted on any other router.]' 
+        },
+        update: { 
+            cmd: 'curl ci5.run/update | sh', 
+            summary: 'Secure Self-Update',
+            desc: '[Fetches latest scripts with GPG signature verification. Includes a rollback checkpoint to revert changes if the update fails.]' 
+        },
+        self: { 
+            cmd: 'sh bone_marrow.sh', 
+            summary: 'Deep System Diagnostic',
+            desc: '[Generates a comprehensive report of CPU/RAM, routing tables, firewall rules, and logs. The first step for troubleshooting.]', 
+            local: true 
+        },
+        fast: { 
+            cmd: 'sh speed_wizard.sh', 
+            summary: 'SQM Auto-Tuner',
+            desc: '[Runs a speed test and configures CAKE Smart Queue Management. Eliminates bufferbloat and lag for gaming and video calls.]', 
+            local: true 
+        },
+        true: { 
+            cmd: 'sh validate.sh', 
+            summary: 'Installation Validator',
+            desc: '[Verifies that the current install matches the official release manifest and that all security services are active and healthy.]', 
+            local: true 
+        },
+        away: { 
+            cmd: 'curl ci5.run/away | sh', 
+            summary: 'Factory Reset (CI5)',
+            desc: '[Completely removes all CI5 scripts, containers, and configurations. Restores the router to a clean, stock OpenWrt state.]' 
+        },
+        pure: { 
+            cmd: 'curl ci5.run/pure | sh', 
+            summary: 'Selective Uninstaller',
+            desc: '[Interactive wizard to remove specific components (e.g., "remove just Docker" or "remove just WireGuard") while keeping others.]' 
+        }
     };
 
     // Glitch Animation
@@ -89,11 +176,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Trigger Flash
         flashTerminal(color);
 
-        // Render Output (Structured format: Name: \n Desc \n \n Command)
+        // Render Output (Structured format: Name: [Summary] \n Desc \n \n Command)
         const t = c.local ? '<span style="color:var(--yellow)">[LOCAL]</span> ' : '';
         
         output.innerHTML = `
-<span style="color:var(--${color})">${key.toUpperCase()}:</span>
+<span style="color:var(--${color})">${key.toUpperCase()}:</span> <span style="color:var(--white)">${c.summary}</span>
 ${t}${c.desc}
 
 <span style="color:var(--green)">${c.cmd}</span>`;
