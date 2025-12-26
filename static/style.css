@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════
 CI5.RUN - Compact Directory (No Scroll 1080p + Breathing Room)
-v8.2-RELEASE | The Net Correctional
+v8.3-RELEASE | The Net Correctional
 ═══════════════════════════════════════════════════════════════════ */
 
 :root {
@@ -42,14 +42,12 @@ html, body {
     text-align: center;
     padding: 10px 0;
     background: var(--bg);
-    /* REMOVED: border-bottom: 1px solid #1a1a1a; */
 }
 
 .logo {
     /* 74.1% of original size */
     height: 199px; 
     width: auto;
-    /* image-rendering: pixelated; */
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -83,7 +81,7 @@ html, body {
 }
 
 /* ─────────────────────────────────────────────────────────────
-    LISTINGS
+    LISTINGS (Color-Aware Hover Effects)
 ───────────────────────────────────────────────────────────── */
 .listing {
     background: rgba(255,255,255,0.015);
@@ -93,12 +91,7 @@ html, body {
     flex-direction: column;
     overflow: hidden;
     height: fit-content;
-    transition: border-color 0.2s;
-}
-
-.listing:hover {
-    border-color: #333;
-    box-shadow: 0 0 15px rgba(57, 255, 20, 0.05);
+    transition: all 0.2s ease;
 }
 
 .listing h2 {
@@ -122,27 +115,93 @@ html, body {
     color: var(--dim);
 }
 
-/* Colors */
-.listing.green h2 { color: var(--green); border-left: 3px solid var(--green); }
-.listing.cyan h2 { color: var(--cyan); border-left: 3px solid var(--cyan); }
-.listing.purple h2 { color: var(--purple); border-left: 3px solid var(--purple); }
-.listing.orange h2 { color: var(--orange); border-left: 3px solid var(--orange); }
-.listing.yellow h2 { color: var(--yellow); border-left: 3px solid var(--yellow); }
-.listing.white h2 { color: var(--white); border-left: 3px solid var(--white); }
-.listing.dim h2 { color: var(--dim); border-left: 3px solid var(--dim); }
-.listing.red h2 { color: var(--red); border-left: 3px solid var(--red); }
+/* --- Color Specific Borders, Glows & Entry Highlights --- */
 
+/* GREEN (Bootstrap) - PERSISTENT GLOW */
+.listing.green h2 { color: var(--green); border-left: 3px solid var(--green); }
 .listing.green .n { color: var(--green); }
+.listing.green .entry code { color: var(--green); background: rgba(57, 255, 20, 0.1); }
+.listing.green { animation: term-breathe 4s ease-in-out infinite; }
+.listing.green:hover { 
+    animation-play-state: paused;
+    border-color: rgba(57, 255, 20, 0.4); 
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.1); 
+}
+.listing.green .entry:hover { background: rgba(57, 255, 20, 0.08); }
+
+/* CYAN (Recovery) */
+.listing.cyan h2 { color: var(--cyan); border-left: 3px solid var(--cyan); }
 .listing.cyan .n { color: var(--cyan); }
+.listing.cyan .entry code { color: var(--cyan); background: rgba(0, 212, 170, 0.1); }
+.listing.cyan:hover { 
+    border-color: rgba(0, 212, 170, 0.4); 
+    box-shadow: 0 0 20px rgba(0, 212, 170, 0.1); 
+}
+.listing.cyan .entry:hover { background: rgba(0, 212, 170, 0.08); }
+
+/* PURPLE (VPN) */
+.listing.purple h2 { color: var(--purple); border-left: 3px solid var(--purple); }
 .listing.purple .n { color: var(--purple); }
+.listing.purple .entry code { color: var(--purple); background: rgba(179, 136, 255, 0.1); }
+.listing.purple:hover { 
+    border-color: rgba(179, 136, 255, 0.4); 
+    box-shadow: 0 0 20px rgba(179, 136, 255, 0.1); 
+}
+.listing.purple .entry:hover { background: rgba(179, 136, 255, 0.08); }
+
+/* ORANGE (Travel) */
+.listing.orange h2 { color: var(--orange); border-left: 3px solid var(--orange); }
 .listing.orange .n { color: var(--orange); }
+.listing.orange .entry code { color: var(--orange); background: rgba(255, 145, 0, 0.1); }
+.listing.orange:hover { 
+    border-color: rgba(255, 145, 0, 0.4); 
+    box-shadow: 0 0 20px rgba(255, 145, 0, 0.1); 
+}
+.listing.orange .entry:hover { background: rgba(255, 145, 0, 0.08); }
+
+/* YELLOW (Monitoring) */
+.listing.yellow h2 { color: var(--yellow); border-left: 3px solid var(--yellow); }
 .listing.yellow .n { color: var(--yellow); }
+.listing.yellow .entry code { color: var(--yellow); background: rgba(255, 215, 64, 0.1); }
+.listing.yellow:hover { 
+    border-color: rgba(255, 215, 64, 0.4); 
+    box-shadow: 0 0 20px rgba(255, 215, 64, 0.1); 
+}
+.listing.yellow .entry:hover { background: rgba(255, 215, 64, 0.08); }
+
+/* WHITE (System) */
+.listing.white h2 { color: var(--white); border-left: 3px solid var(--white); }
 .listing.white .n { color: var(--white); }
+.listing.white .entry code { color: var(--white); background: rgba(200, 200, 200, 0.1); }
+.listing.white:hover { 
+    border-color: rgba(200, 200, 200, 0.4); 
+    box-shadow: 0 0 20px rgba(200, 200, 200, 0.08); 
+}
+.listing.white .entry:hover { background: rgba(200, 200, 200, 0.08); }
+
+/* DIM (Local) */
+.listing.dim h2 { color: var(--dim); border-left: 3px solid var(--dim); }
 .listing.dim .n { color: var(--dim); }
+.listing.dim .entry code { color: var(--dim); background: rgba(136, 136, 136, 0.1); }
+.listing.dim:hover { 
+    border-color: rgba(136, 136, 136, 0.4); 
+    box-shadow: 0 0 20px rgba(136, 136, 136, 0.08); 
+}
+.listing.dim .entry:hover { background: rgba(136, 136, 136, 0.08); }
+
+/* RED (Maintenance) */
+.listing.red h2 { color: var(--red); border-left: 3px solid var(--red); }
 .listing.red .n { color: var(--red); }
+.listing.red .entry code { color: var(--red); background: rgba(255, 82, 82, 0.1); }
+.listing.red:hover { 
+    border-color: rgba(255, 82, 82, 0.4); 
+    box-shadow: 0 0 20px rgba(255, 82, 82, 0.15); 
+}
+.listing.red .entry:hover { background: rgba(255, 82, 82, 0.08); }
+
 
 /* ─────────────────────────────────────────────────────────────
-    ENTRIES
+    ENTRIES (Updated: Generic base, Specifics handled above)
 ───────────────────────────────────────────────────────────── */
 .entry {
     display: flex;
@@ -151,10 +210,6 @@ html, body {
     padding: 8px 12px;
     cursor: pointer;
     transition: background 0.1s;
-}
-
-.entry:hover {
-    background: rgba(57, 255, 20, 0.04);
 }
 
 .entry .n {
@@ -169,11 +224,10 @@ html, body {
 .entry code {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--cyan);
-    background: rgba(0, 212, 170, 0.1);
     padding: 4px 8px;
     border-radius: 2px;
     white-space: nowrap;
+    /* Color and Background are now inherited from .listing.[color] rules above */
 }
 
 .entry .d {
@@ -184,24 +238,22 @@ html, body {
 }
 
 .entry.copied code {
-    background: rgba(57, 255, 20, 0.25);
-    color: var(--green);
+    background: rgba(57, 255, 20, 0.25) !important;
+    color: var(--green) !important;
 }
 
 /* ─────────────────────────────────────────────────────────────
-    TERMINAL (Updated: Subtle Void Style + Red Glitch Fix)
+    TERMINAL
 ───────────────────────────────────────────────────────────── */
 
 @keyframes term-breathe {
     0%, 100% {
-        /* Very faint resting state */
         box-shadow: 
             0 0 5px rgba(57, 255, 20, 0.05),
             inset 0 0 10px rgba(57, 255, 20, 0.01);
         border-color: rgba(57, 255, 20, 0.15);
     }
     50% {
-        /* Max pulse reduced to ~33% of previous intensity */
         box-shadow: 
             0 0 12px rgba(57, 255, 20, 0.08),
             inset 0 0 15px rgba(57, 255, 20, 0.03);
@@ -209,29 +261,43 @@ html, body {
     }
 }
 
+/* Flash Animations: Doubled Duration to 1s */
+@keyframes flash-green  { 0% { border-color: var(--green);  box-shadow: 0 0 25px rgba(57, 255, 20, 0.3);   } 100% { border-color: rgba(57, 255, 20, 0.15); } }
+@keyframes flash-cyan   { 0% { border-color: var(--cyan);   box-shadow: 0 0 25px rgba(0, 212, 170, 0.3);   } 100% { border-color: rgba(57, 255, 20, 0.15); } }
+@keyframes flash-purple { 0% { border-color: var(--purple); box-shadow: 0 0 25px rgba(179, 136, 255, 0.3); } 100% { border-color: rgba(57, 255, 20, 0.15); } }
+@keyframes flash-orange { 0% { border-color: var(--orange); box-shadow: 0 0 25px rgba(255, 145, 0, 0.3);   } 100% { border-color: rgba(57, 255, 20, 0.15); } }
+@keyframes flash-yellow { 0% { border-color: var(--yellow); box-shadow: 0 0 25px rgba(255, 215, 64, 0.3);  } 100% { border-color: rgba(57, 255, 20, 0.15); } }
+@keyframes flash-white  { 0% { border-color: var(--white);  box-shadow: 0 0 25px rgba(200, 200, 200, 0.3); } 100% { border-color: rgba(57, 255, 20, 0.15); } }
+@keyframes flash-dim    { 0% { border-color: var(--dim);    box-shadow: 0 0 25px rgba(136, 136, 136, 0.3); } 100% { border-color: rgba(57, 255, 20, 0.15); } }
+@keyframes flash-red    { 0% { border-color: var(--red);    box-shadow: 0 0 25px rgba(255, 82, 82, 0.3);   } 100% { border-color: rgba(57, 255, 20, 0.15); } }
+
 .terminal {
     background: rgba(0, 0, 0, 0.95);
-    
-    /* Initial border (animated by keyframes) */
     border: 1px solid rgba(57, 255, 20, 0.15);
     border-radius: 6px;
-    
     animation: term-breathe 4s ease-in-out infinite;
-    
     width: 100%;
     max-width: 741px;
     height: 310px;
-    
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    
     transition: all 0.3s ease;
 }
 
-/* Interactive: Hover/Focus glow also reduced to ~33% */
+/* Modifier classes for the flash effect (1s duration) */
+.terminal.flash-green  { animation: flash-green 1s ease-out; }
+.terminal.flash-cyan   { animation: flash-cyan 1s ease-out; }
+.terminal.flash-purple { animation: flash-purple 1s ease-out; }
+.terminal.flash-orange { animation: flash-orange 1s ease-out; }
+.terminal.flash-yellow { animation: flash-yellow 1s ease-out; }
+.terminal.flash-white  { animation: flash-white 1s ease-out; }
+.terminal.flash-dim    { animation: flash-dim 1s ease-out; }
+.terminal.flash-red    { animation: flash-red 1s ease-out; }
+
+/* Interactive: Hover/Focus glow */
 .terminal:hover, .terminal:focus-within {
-    animation: none;
+    animation-play-state: running; 
     border-color: rgba(57, 255, 20, 0.35);
     box-shadow: 
         0 0 15px rgba(57, 255, 20, 0.1),
@@ -244,7 +310,7 @@ html, body {
     display: flex;
     align-items: center;
     gap: 6px;
-    border-bottom: 1px solid rgba(57, 255, 20, 0.1); /* Reduced separator opacity */
+    border-bottom: 1px solid rgba(57, 255, 20, 0.1); 
     flex-shrink: 0;
 }
 
@@ -275,10 +341,7 @@ html, body {
 .tr { color: var(--red); }
 .td { color: var(--dim); }
 
-/* GLITCH FIX: Ensure the flickering number matches the red error text */
-#glitch {
-    color: var(--red);
-}
+#glitch { color: var(--red); }
 
 .ghost { 
     color: var(--dim); 

@@ -1,12 +1,25 @@
 /**
  * CI5.RUN - Compact Directory
- * v8.0-RELEASE
+ * v8.4-RELEASE
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('input');
     const output = document.getElementById('output');
     const toast = document.getElementById('toast');
+    const terminal = document.querySelector('.terminal');
+
+    // Define colors for categories
+    const CAT_COLORS = {
+        free: 'green', '4evr': 'green',
+        heal: 'cyan', rescue: 'cyan', status: 'cyan',
+        mullvad: 'purple', tailscale: 'purple', hybrid: 'purple',
+        travel: 'orange', focus: 'orange', wipe: 'orange',
+        alert: 'yellow', ddns: 'yellow',
+        paranoia: 'white', backup: 'white', update: 'white',
+        self: 'dim', fast: 'dim', true: 'dim',
+        away: 'red', pure: 'red'
+    };
 
     const COMMANDS = {
         free: { cmd: 'curl ci5.run/free | sh', desc: 'Full Stack: Docker + Suricata IDS + Corks' },
@@ -44,6 +57,22 @@ document.addEventListener('DOMContentLoaded', () => {
         loop();
     }
 
+    // Flash Terminal Helper
+    const flashTerminal = (color) => {
+        // Remove any existing flash classes to allow re-trigger
+        terminal.classList.remove('flash-green', 'flash-cyan', 'flash-purple', 'flash-orange', 'flash-yellow', 'flash-white', 'flash-dim', 'flash-red');
+        
+        // Force reflow to restart animation if same color is typed twice quickly
+        void terminal.offsetWidth; 
+        
+        terminal.classList.add(`flash-${color}`);
+        
+        // Cleanup class after animation ends (1000ms = 1s)
+        setTimeout(() => {
+            terminal.classList.remove(`flash-${color}`);
+        }, 1000);
+    };
+
     // Terminal
     input.addEventListener('keydown', e => {
         if (e.key !== 'Enter') return;
@@ -65,18 +94,23 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!c) {
             const foundEntry = Object.entries(COMMANDS).find(([k, val]) => val.cmd.toLowerCase() === v);
             if (foundEntry) {
-                key = foundEntry[0]; // Use the short name (e.g. "heal") for the title
+                key = foundEntry[0]; 
                 c = foundEntry[1];
             }
         }
         
         if (c) {
+            // Trigger Flash
+            const color = CAT_COLORS[key] || 'green';
+            flashTerminal(color);
+
             const t = c.local ? '<span style="color:var(--yellow)">[LOCAL]</span> ' : '';
-            // Display the 'key' in uppercase to ensure consistent output regardless of input method
             output.innerHTML = `<span style="color:var(--cyan)">${key.toUpperCase()}</span> ${t}${c.desc}\n<span style="color:var(--green)">${c.cmd}</span>`;
             return;
         }
         
+        // Error Flash
+        flashTerminal('red');
         output.innerHTML = `<span style="color:var(--red)">Unknown:</span> ${v}`;
     });
 
