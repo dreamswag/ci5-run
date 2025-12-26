@@ -1,6 +1,6 @@
 /**
  * CI5.RUN - Compact Directory
- * v8.4-RELEASE
+ * v8.8-RELEASE (Structured Terminal Output)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const COMMANDS = {
-        free: { cmd: 'curl ci5.run/free | sh', desc: 'Full Stack: Docker + Suricata IDS + Corks' },
-        '4evr': { cmd: 'curl ci5.run/4evr | sh', desc: 'Sovereign: Minimal, no Docker, no telemetry' },
+        free: { cmd: 'curl ci5.run/free | sh', desc: '[Full Stack] Lite Features + Docker (Suricata + CrowdSec + AdGuard Home + Ntopng & Redis + Homepage) + Corks' },
+        '4evr': { cmd: 'curl ci5.run/4evr | sh', desc: '[Lite Stack] No Docker + Kernel Performance Tweaks + Local Firewall Zones + Unbound DNS + CAKE SQM' },
         heal: { cmd: 'curl ci5.run/heal | sh', desc: 'Verify + restore base scripts from ci5.host' },
         rescue: { cmd: 'curl ci5.run/rescue | sh', desc: 'Force public DNS (1.1.1.1, 9.9.9.9)' },
         status: { cmd: 'curl ci5.run/status | sh', desc: 'Quick health check, exit 0 = healthy' },
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pure: { cmd: 'curl ci5.run/pure | sh', desc: 'Selective component removal' }
     };
 
-    // Glitch
+    // Glitch Animation
     const g = document.getElementById('glitch');
     if (g) {
         const loop = () => {
@@ -57,23 +57,50 @@ document.addEventListener('DOMContentLoaded', () => {
         loop();
     }
 
-    // Flash Terminal Helper
+    // Flash Terminal Helper (Fixed for Fast Clicking)
+    let flashTimeout; 
     const flashTerminal = (color) => {
-        // Remove any existing flash classes to allow re-trigger
+        // Clear any existing cleanup timer to prevent premature removal
+        if (flashTimeout) clearTimeout(flashTimeout);
+
+        // Remove any existing flash classes
         terminal.classList.remove('flash-green', 'flash-cyan', 'flash-purple', 'flash-orange', 'flash-yellow', 'flash-white', 'flash-dim', 'flash-red');
         
-        // Force reflow to restart animation if same color is typed twice quickly
+        // Force reflow to restart animation
         void terminal.offsetWidth; 
         
+        // Add new flash class
         terminal.classList.add(`flash-${color}`);
         
-        // Cleanup class after animation ends (1000ms = 1s)
-        setTimeout(() => {
+        // Cleanup class after animation ends (1.47s = 1470ms)
+        flashTimeout = setTimeout(() => {
             terminal.classList.remove(`flash-${color}`);
-        }, 1000);
+        }, 1470);
     };
 
-    // Terminal
+    // Core Command Logic (Shared by Click and Type)
+    const runCommand = (key) => {
+        const c = COMMANDS[key];
+        if (!c) return false;
+
+        // Get Color
+        const color = CAT_COLORS[key] || 'green';
+        
+        // Trigger Flash
+        flashTerminal(color);
+
+        // Render Output (Structured format: Name: \n Desc \n \n Command)
+        const t = c.local ? '<span style="color:var(--yellow)">[LOCAL]</span> ' : '';
+        
+        output.innerHTML = `
+<span style="color:var(--${color})">${key.toUpperCase()}:</span>
+${t}${c.desc}
+
+<span style="color:var(--green)">${c.cmd}</span>`;
+        return true;
+    };
+
+    // Terminal Input Listener
     input.addEventListener('keydown', e => {
         if (e.key !== 'Enter') return;
         const v = input.value.trim().toLowerCase();
@@ -86,66 +113,73 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        // 1. Try direct lookup (e.g., "heal")
+        // 1. Try direct lookup
         let key = v;
-        let c = COMMANDS[v];
-
-        // 2. If no match, try finding by command string (e.g., "curl ci5.run/heal | sh")
-        if (!c) {
+        
+        // 2. If no direct match, try finding by command string
+        if (!COMMANDS[key]) {
             const foundEntry = Object.entries(COMMANDS).find(([k, val]) => val.cmd.toLowerCase() === v);
-            if (foundEntry) {
-                key = foundEntry[0]; 
-                c = foundEntry[1];
-            }
+            if (foundEntry) key = foundEntry[0];
         }
         
-        if (c) {
-            // Trigger Flash
-            const color = CAT_COLORS[key] || 'green';
-            flashTerminal(color);
-
-            const t = c.local ? '<span style="color:var(--yellow)">[LOCAL]</span> ' : '';
-            output.innerHTML = `<span style="color:var(--cyan)">${key.toUpperCase()}</span> ${t}${c.desc}\n<span style="color:var(--green)">${c.cmd}</span>`;
-            return;
+        // Execute
+        if (!runCommand(key)) {
+            flashTerminal('red');
+            output.innerHTML = `<span style="color:var(--red)">Unknown:</span> ${v}`;
         }
-        
-        // Error Flash
-        flashTerminal('red');
-        output.innerHTML = `<span style="color:var(--red)">Unknown:</span> ${v}`;
     });
 
-    // Click to copy
+    // Toast Notification
     let tt;
-    const show = txt => {
+    const showToast = (txt, colorName = 'green') => {
         toast.textContent = txt;
+        
+        // Apply category color to toast
+        toast.style.backgroundColor = `var(--${colorName})`;
+        toast.style.color = '#000'; // Ensure readability
+
         toast.classList.add('show');
         clearTimeout(tt);
         tt = setTimeout(() => toast.classList.remove('show'), 1200);
     };
 
+    // Click Interactions
     document.querySelectorAll('.entry').forEach(el => {
         el.addEventListener('click', () => {
             const code = el.querySelector('code');
+            const key = el.getAttribute('data-cmd'); // Get command key
+            
             if (!code) return;
+
+            // Execute Terminal Logic
+            if (key) runCommand(key);
+
+            // Copy to Clipboard
             navigator.clipboard.writeText(code.textContent).then(() => {
-                el.classList.add('copied');
-                setTimeout(() => el.classList.remove('copied'), 250);
-                show('Copied!');
+                triggerCopyVisuals(el, key, 'Copied!');
             }).catch(() => {
+                // Fallback for older browsers / non-secure contexts
                 const ta = document.createElement('textarea');
                 ta.value = code.textContent;
                 document.body.appendChild(ta);
                 ta.select();
                 document.execCommand('copy');
                 document.body.removeChild(ta);
-                el.classList.add('copied');
-                setTimeout(() => el.classList.remove('copied'), 250);
-                show('Copied!');
+                triggerCopyVisuals(el, key, 'Copied!');
             });
         });
     });
 
-    // Auto-focus
+    const triggerCopyVisuals = (el, key, msg) => {
+        el.classList.add('copied');
+        setTimeout(() => el.classList.remove('copied'), 250);
+        
+        // Get color for toast
+        const color = CAT_COLORS[key] || 'green';
+        showToast(msg, color);
+    };
+
+    // Auto-focus Input
     document.addEventListener('keydown', e => {
         if (document.activeElement !== input && e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
             input.focus();

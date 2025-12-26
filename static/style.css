@@ -47,7 +47,7 @@ html, body {
 .logo {
     height: 199px; 
     width: auto;
-    image-rendering: pixelated;
+   /* image-rendering: pixelated; */
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -115,10 +115,14 @@ html, body {
 /* --- Color Specific Borders, Glows & Entry Highlights --- */
 
 /* GREEN (Bootstrap) - PERSISTENT GLOW */
+.listing.green {
+    --flash-color: var(--green);
+    --flash-bg: rgba(57, 255, 20, 0.25);
+    animation: term-breathe 4s ease-in-out infinite;
+}
 .listing.green h2 { color: var(--green); border-left: 3px solid var(--green); }
 .listing.green .n { color: var(--green); }
 .listing.green .entry code { color: var(--green); background: rgba(57, 255, 20, 0.1); }
-.listing.green { animation: term-breathe 4s ease-in-out infinite; }
 .listing.green:hover { 
     animation-play-state: paused;
     border-color: rgba(57, 255, 20, 0.4); 
@@ -127,6 +131,10 @@ html, body {
 .listing.green .entry:hover { background: rgba(57, 255, 20, 0.08); }
 
 /* CYAN (Recovery) */
+.listing.cyan {
+    --flash-color: var(--cyan);
+    --flash-bg: rgba(0, 212, 170, 0.25);
+}
 .listing.cyan h2 { color: var(--cyan); border-left: 3px solid var(--cyan); }
 .listing.cyan .n { color: var(--cyan); }
 .listing.cyan .entry code { color: var(--cyan); background: rgba(0, 212, 170, 0.1); }
@@ -137,6 +145,10 @@ html, body {
 .listing.cyan .entry:hover { background: rgba(0, 212, 170, 0.08); }
 
 /* PURPLE (VPN) */
+.listing.purple {
+    --flash-color: var(--purple);
+    --flash-bg: rgba(179, 136, 255, 0.25);
+}
 .listing.purple h2 { color: var(--purple); border-left: 3px solid var(--purple); }
 .listing.purple .n { color: var(--purple); }
 .listing.purple .entry code { color: var(--purple); background: rgba(179, 136, 255, 0.1); }
@@ -147,6 +159,10 @@ html, body {
 .listing.purple .entry:hover { background: rgba(179, 136, 255, 0.08); }
 
 /* ORANGE (Travel) */
+.listing.orange {
+    --flash-color: var(--orange);
+    --flash-bg: rgba(255, 145, 0, 0.25);
+}
 .listing.orange h2 { color: var(--orange); border-left: 3px solid var(--orange); }
 .listing.orange .n { color: var(--orange); }
 .listing.orange .entry code { color: var(--orange); background: rgba(255, 145, 0, 0.1); }
@@ -157,6 +173,10 @@ html, body {
 .listing.orange .entry:hover { background: rgba(255, 145, 0, 0.08); }
 
 /* YELLOW (Monitoring) */
+.listing.yellow {
+    --flash-color: var(--yellow);
+    --flash-bg: rgba(255, 215, 64, 0.25);
+}
 .listing.yellow h2 { color: var(--yellow); border-left: 3px solid var(--yellow); }
 .listing.yellow .n { color: var(--yellow); }
 .listing.yellow .entry code { color: var(--yellow); background: rgba(255, 215, 64, 0.1); }
@@ -167,6 +187,10 @@ html, body {
 .listing.yellow .entry:hover { background: rgba(255, 215, 64, 0.08); }
 
 /* WHITE (System) */
+.listing.white {
+    --flash-color: var(--white);
+    --flash-bg: rgba(200, 200, 200, 0.25);
+}
 .listing.white h2 { color: var(--white); border-left: 3px solid var(--white); }
 .listing.white .n { color: var(--white); }
 .listing.white .entry code { color: var(--white); background: rgba(200, 200, 200, 0.1); }
@@ -177,6 +201,10 @@ html, body {
 .listing.white .entry:hover { background: rgba(200, 200, 200, 0.08); }
 
 /* DIM (Local) */
+.listing.dim {
+    --flash-color: var(--dim);
+    --flash-bg: rgba(136, 136, 136, 0.25);
+}
 .listing.dim h2 { color: var(--dim); border-left: 3px solid var(--dim); }
 .listing.dim .n { color: var(--dim); }
 .listing.dim .entry code { color: var(--dim); background: rgba(136, 136, 136, 0.1); }
@@ -187,6 +215,10 @@ html, body {
 .listing.dim .entry:hover { background: rgba(136, 136, 136, 0.08); }
 
 /* RED (Maintenance) */
+.listing.red {
+    --flash-color: var(--red);
+    --flash-bg: rgba(255, 82, 82, 0.25);
+}
 .listing.red h2 { color: var(--red); border-left: 3px solid var(--red); }
 .listing.red .n { color: var(--red); }
 .listing.red .entry code { color: var(--red); background: rgba(255, 82, 82, 0.1); }
@@ -234,9 +266,10 @@ html, body {
     text-align: right;
 }
 
+/* Updated to use CSS Variables for correct color matching on click */
 .entry.copied code {
-    background: rgba(57, 255, 20, 0.25) !important;
-    color: var(--green) !important;
+    background: var(--flash-bg) !important;
+    color: var(--flash-color) !important;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -258,7 +291,7 @@ html, body {
     }
 }
 
-/* Flash Animations: Doubled Duration to 1s */
+/* Flash Animations: Updated to 1.47s */
 @keyframes flash-green  { 0% { border-color: var(--green);  box-shadow: 0 0 25px rgba(57, 255, 20, 0.3);   } 100% { border-color: rgba(57, 255, 20, 0.15); } }
 @keyframes flash-cyan   { 0% { border-color: var(--cyan);   box-shadow: 0 0 25px rgba(0, 212, 170, 0.3);   } 100% { border-color: rgba(57, 255, 20, 0.15); } }
 @keyframes flash-purple { 0% { border-color: var(--purple); box-shadow: 0 0 25px rgba(179, 136, 255, 0.3); } 100% { border-color: rgba(57, 255, 20, 0.15); } }
@@ -282,15 +315,15 @@ html, body {
     transition: all 0.3s ease;
 }
 
-/* Modifier classes for the flash effect (1s duration) */
-.terminal.flash-green  { animation: flash-green 1s ease-out; }
-.terminal.flash-cyan   { animation: flash-cyan 1s ease-out; }
-.terminal.flash-purple { animation: flash-purple 1s ease-out; }
-.terminal.flash-orange { animation: flash-orange 1s ease-out; }
-.terminal.flash-yellow { animation: flash-yellow 1s ease-out; }
-.terminal.flash-white  { animation: flash-white 1s ease-out; }
-.terminal.flash-dim    { animation: flash-dim 1s ease-out; }
-.terminal.flash-red    { animation: flash-red 1s ease-out; }
+/* Modifier classes for the flash effect (1.47s duration) */
+.terminal.flash-green  { animation: flash-green 1.47s ease-out; }
+.terminal.flash-cyan   { animation: flash-cyan 1.47s ease-out; }
+.terminal.flash-purple { animation: flash-purple 1.47s ease-out; }
+.terminal.flash-orange { animation: flash-orange 1.47s ease-out; }
+.terminal.flash-yellow { animation: flash-yellow 1.47s ease-out; }
+.terminal.flash-white  { animation: flash-white 1.47s ease-out; }
+.terminal.flash-dim    { animation: flash-dim 1.47s ease-out; }
+.terminal.flash-red    { animation: flash-red 1.47s ease-out; }
 
 /* Interactive: Hover/Focus glow */
 .terminal:hover, .terminal:focus-within {
