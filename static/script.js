@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         gsense: { 
             cmd: 'curl -sL ci5.run | sh -s gsense', 
-            summary: 'Low-Latency VPN',
+            summary: 'GameSense',
             desc: '[Gaming-optimized VPN with real-time latency monitoring. Auto-switches endpoints for lowest ping.]' 
         }
     };
