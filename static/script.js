@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         '1314': { 
             cmd: 'curl -sL ci5.run | sh -s 1314', 
-            summary: 'Custom Installation',
-            desc: '[Interactive installer. Choose which components to install. Full control over your stack.]' 
+            summary: 'Install Custom Stack',
+            desc: '[Interactive customisability for those who already know their exact ideal stack. Advanced options included.]' 
         },
         
         // 🛡️ RECOVERY
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsense: { 
             cmd: 'curl -sL ci5.run | sh -s gsense', 
             summary: 'GameSense',
-            desc: '[Gaming-optimized VPN with real-time latency monitoring. Auto-switches endpoints for lowest ping.]' 
+            desc: '[Gaming-optimised VPN split-tunneling. Real-time latency monitoring via actively curated whitelist for multiplayer servers. Anti-Lag OC provides maximum execution priority for gaming-related traffic packets.]' 
         }
     };
 
