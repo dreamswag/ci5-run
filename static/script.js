@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Travel (orange)
         travel: 'orange', clone: 'orange', focus: 'orange',
         // Monitoring (yellow)
-        alert: 'yellow', ddns: 'yellow', gsense: 'yellow'
+        alert: 'yellow', ddns: 'yellow', gamesense: 'yellow'
     };
 
     const COMMANDS = {
@@ -163,10 +163,10 @@ document.addEventListener('DOMContentLoaded', () => {
             summary: 'Dynamic IP Sync',
             desc: '[Updates DNS records and re-syncs WireGuard peers when your home IP changes. Keeps VPNs connected on dynamic residential lines.]' 
         },
-        gsense: { 
-            cmd: 'curl -sL ci5.run | sh -s gsense', 
-            summary: 'GameSense',
-            desc: '[Gaming-optimized VPN with real-time latency monitoring. Auto-switches endpoints for lowest ping.]' 
+        gamesense: { 
+            cmd: 'curl -sL ci5.run | sh -s gamesense', 
+            summary: 'Low-Latency VPN',
+            desc: '[Gaming-optimized VPN with real-time latency monitoring. Auto-switches endpoints for lowest ping. SteelSeries GameSense integration.]' 
         }
     };
 
