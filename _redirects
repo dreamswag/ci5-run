@@ -1,21 +1,66 @@
 # ══════════════════════════════════════════════════════════════════════════════
-# ci5.run - Routing Layer (v8.0 - Unified Verification)
+# ci5.run - Routing Layer (v8.1 - Dev/Testing Enabled)
 # ══════════════════════════════════════════════════════════════════════════════
-# ALL executable commands serve stub.sh for signature verification
-# Only static assets and documentation bypass verification
-# Architecture: github.com/dreamswag/ci5/blob/main/docs/ARCHITECTURE.md
-# ══════════════════════════════════════════════════════════════════════════════
+
+# ┌─────────────────────────────────────────────────────────────────────────────┐
+# │ 🚧 DEV / TESTING OVERRIDES (Bypass Stub & Verification)                    │
+# │ UNCOMMENT these lines to test scripts directly without signing.            │
+# │ CAUTION: This bypasses State Tracking, Audits, and Security Checks.        │
+# └─────────────────────────────────────────────────────────────────────────────┘
+
+# 🚀 BOOTSTRAP (Testing)
+/free           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/install-recommended.sh    200
+/4evr           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/install-minimal.sh        200
+/1314           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/install-custom.sh         200
+
+# 🔐 VPN (Testing)
+/mullvad        https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/vpn/setup_mullvad.sh      200
+/tailscale      https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/vpn/setup_tailscale.sh    200
+/hybrid         https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/vpn/setup_hybrid.sh       200
+
+# ⚙️ SYSTEM (Testing)
+/update         https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/system/update.sh          200
+/paranoia       https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/security/paranoia_toggle.sh 200
+/backup         https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/system/backup.sh          200
+
+# 📡 MONITORING (Testing)
+/gamesense      https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/monitor/gamesense.sh      200
+/alert          https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/monitor/alert.sh          200
+/ddns           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/monitor/ddns.sh           200
+
+# ✈️ TRAVEL (Testing)
+/travel         https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/travel/travel.sh          200
+/clone          https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/travel/clone.sh           200
+/focus          https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/productivity/focus_mode.sh 200
+
+# 🛡️ RECOVERY (Testing)
+/heal           https://raw.githubusercontent.com/dreamswag/ci5/main/emergency/self_heal.sh            200
+/rescue         https://raw.githubusercontent.com/dreamswag/ci5/main/emergency/force_public_dns.sh     200
+/sos            https://raw.githubusercontent.com/dreamswag/ci5/main/emergency/emergency_recovery.sh   200
+
+# 🗑️ MAINTENANCE (Testing)
+/away           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/maintenance/away.sh       200
+/pure           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/pure/pure.sh              200
+/status         https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/diagnostics/quick_check.sh 200
+
+# 📦 TOOLS (Testing)
+/archive        https://raw.githubusercontent.com/dreamswag/ci5/main/tools/generate_offline_bundle.sh  200
+
+# ─────────────────────────────────────────────────────────────────────────────
+# END TESTING BLOCK - Production rules below will be ignored for above paths
+# ─────────────────────────────────────────────────────────────────────────────
 
 # ┌─────────────────────────────────────────────────────────────────────────────┐
 # │ HOMEPAGE - Web UI for browsers                                             │
 # └─────────────────────────────────────────────────────────────────────────────┘
-/               /index.html     200
+/               /index.html   200
 
 # stub.sh direct access (for: curl ci5.run/stub.sh | sh)
 /stub.sh        /stub.sh        200
 
 # ┌─────────────────────────────────────────────────────────────────────────────┐
 # │ VERIFIED COMMANDS - All serve stub.sh for signature verification           │
+# │ (These catch anything NOT overridden by the Testing Block above)           │
 # └─────────────────────────────────────────────────────────────────────────────┘
 
 # 🚀 BOOTSTRAP
@@ -56,23 +101,18 @@
 
 # ┌─────────────────────────────────────────────────────────────────────────────┐
 # │ AUDIT - Isolated Repository (ci5.host)                                     │
-# │ Redirects to ci5.host which has its OWN stub.sh and signing key            │
-# │ This maintains security isolation between install and audit paths          │
 # └─────────────────────────────────────────────────────────────────────────────┘
 /audit          https://ci5.host/     302
 
 # ┌─────────────────────────────────────────────────────────────────────────────┐
 # │ PURE HOOKS (for cork developers)                                           │
-# │ These are sourced, not executed, so signature is embedded                  │
 # └─────────────────────────────────────────────────────────────────────────────┘
 /pure-hooks     https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/pure/pure-hooks.sh    302
 
 # ┌─────────────────────────────────────────────────────────────────────────────┐
 # │ RAW ACCESS (Bypass verification)                                           │
-# │ For offline bundles, manual inspection, or embedding                       │
-# │ Clearly labeled as unverified - user assumes responsibility                │
 # └─────────────────────────────────────────────────────────────────────────────┘
-/raw/*          https://raw.githubusercontent.com/dreamswag/ci5/main/:splat    302
+/raw/* https://raw.githubusercontent.com/dreamswag/ci5/main/:splat    302
 
 # ┌─────────────────────────────────────────────────────────────────────────────┐
 # │ DOCUMENTATION                                                              │
@@ -83,8 +123,8 @@
 # ┌─────────────────────────────────────────────────────────────────────────────┐
 # │ STATIC ASSETS (Non-executable)                                             │
 # └─────────────────────────────────────────────────────────────────────────────┘
-/static/*       /static/:splat      200
-/keys/*         /keys/:splat        200
+/static/* /static/:splat      200
+/keys/* /keys/:splat        200
 
 # ┌─────────────────────────────────────────────────────────────────────────────┐
 # │ OFFLINE BUNDLE                                                             │
@@ -94,6 +134,5 @@
 
 # ┌─────────────────────────────────────────────────────────────────────────────┐
 # │ FALLBACK                                                                   │
-# │ Unknown paths show web UI (browsers) - stub.sh only for explicit commands  │
 # └─────────────────────────────────────────────────────────────────────────────┘
-/*              /index.html     200
+/* /index.html     200
