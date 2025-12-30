@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsense: { 
             cmd: 'curl -sL ci5.run | sh -s gsense', 
             summary: 'GameSense',
-            desc: '[Gaming-optimised VPN split-tunneling. Real-time latency monitoring via actively curated whitelist for multiplayer servers. Anti-Lag OC provides maximum execution priority for gaming-related traffic packets.]' 
+            desc: '[Gaming-optimised VPN split-tunneling. Real-time latency monitoring which actively curates whitelist for multiplayer servers. Anti-Lag OC provides maximum execution priority for gaming-related traffic packets.]' 
         }
     };
 
