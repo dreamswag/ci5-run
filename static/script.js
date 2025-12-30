@@ -1,6 +1,6 @@
 /**
  * CI5.RUN - Compact Directory
- * v8.0-RELEASE (Unified Verification)
+ * v8.1-RELEASE (Category Rebalance)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,20 +13,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const CAT_COLORS = {
         // Bootstrap (green)
         free: 'green', '4evr': 'green', '1314': 'green',
-        // Recovery (cyan)
-        heal: 'cyan', rescue: 'cyan', status: 'cyan',
+        // Recovery (cyan) - sos replaces status
+        heal: 'cyan', rescue: 'cyan', sos: 'cyan',
         // System (white)
         paranoia: 'white', backup: 'white', update: 'white',
         // Local (dim)
         self: 'dim', fast: 'dim', true: 'dim',
-        // Maintenance (red)
-        away: 'red', pure: 'red', wipe: 'red',
+        // Maintenance (red) - status moved here, wipe merged into away
+        away: 'red', pure: 'red', status: 'red',
         // VPN (purple)
         mullvad: 'purple', tailscale: 'purple', hybrid: 'purple',
         // Travel (orange)
         travel: 'orange', clone: 'orange', focus: 'orange',
-        // Monitoring (yellow)
-        alert: 'yellow', ddns: 'yellow', gamesense: 'yellow'
+        // Monitoring (yellow) - gsense replaces gamesense
+        alert: 'yellow', ddns: 'yellow', gsense: 'yellow'
     };
 
     const COMMANDS = {
@@ -58,10 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
             summary: 'Emergency DNS Bypass',
             desc: '[Forces the router to use public resolvers (1.1.1.1) to restore internet access when local DNS fails but connection is active.]' 
         },
-        status: { 
-            cmd: 'curl -sL ci5.run | sh -s status', 
-            summary: 'Quick Health Check',
-            desc: '[Runs a simplified pass/fail diagnostic on internet connectivity, firewall rules, and services. Useful for a quick status verification.]' 
+        sos: { 
+            cmd: 'curl -sL ci5.run | sh -s sos', 
+            summary: 'Emergency Recovery',
+            desc: '[Nuclear option. Stops all CI5 services, restores stock firewall rules, and re-enables basic routing. Use when completely locked out.]' 
         },
         
         // ⚙️ SYSTEM
@@ -104,18 +104,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // 🗑️ MAINTENANCE
         away: { 
             cmd: 'curl -sL ci5.run | sh -s away', 
-            summary: 'Factory Reset (CI5)',
-            desc: '[Completely removes all CI5 scripts, containers, and configurations. Restores the router to a clean, stock OpenWrt state.]' 
+            summary: 'Complete Uninstall',
+            desc: '[Removes all CI5 corks, containers, and configs. Add --wipe flag for border crossing mode (secure-deletes VPN keys, SSH keys, history).]' 
         },
         pure: { 
             cmd: 'curl -sL ci5.run | sh -s pure', 
             summary: 'Selective Uninstaller',
             desc: '[Interactive wizard to remove specific components. Tracks install state for clean removal. Respects dependencies between corks.]' 
         },
-        wipe: { 
-            cmd: 'curl -sL ci5.run | sh -s wipe', 
-            summary: 'Digital Shredder',
-            desc: '[Securely overwrites VPN keys, wipes shell history, flushes logs, and trims storage. Use before crossing borders or selling device.]' 
+        status: { 
+            cmd: 'curl -sL ci5.run | sh -s status', 
+            summary: 'Quick Health Check',
+            desc: '[Runs a simplified pass/fail diagnostic on internet connectivity, firewall rules, and services. Useful for routine status verification.]' 
         },
         
         // 🔐 VPN & PRIVACY
@@ -163,10 +163,10 @@ document.addEventListener('DOMContentLoaded', () => {
             summary: 'Dynamic IP Sync',
             desc: '[Updates DNS records and re-syncs WireGuard peers when your home IP changes. Keeps VPNs connected on dynamic residential lines.]' 
         },
-        gamesense: { 
-            cmd: 'curl -sL ci5.run | sh -s gamesense', 
-            summary: 'Low-Latency VPN',
-            desc: '[Gaming-optimized VPN with real-time latency monitoring. Auto-switches endpoints for lowest ping. SteelSeries GameSense integration.]' 
+        gsense: { 
+            cmd: 'curl -sL ci5.run | sh -s gsense', 
+            summary: 'GameSense',
+            desc: '[Gaming-optimized VPN with real-time latency monitoring. Auto-switches endpoints for lowest ping.]' 
         }
     };
 
