@@ -3,15 +3,15 @@
 # ══════════════════════════════════════════════════════════════════════════════
 
 # ┌─────────────────────────────────────────────────────────────────────────────┐
-# │ 🚧 DEV / TESTING OVERRIDES (Bypass Stub & Verification)                    │
-# │ UNCOMMENT these lines to test scripts directly without signing.            │
-# │ CAUTION: This bypasses State Tracking, Audits, and Security Checks.        │
+# │ 🚧 DEV / TESTING OVERRIDES (Bypass Stub & Verification)                     │
+# │ UNCOMMENT these lines to test scripts directly without signing.             │
+# │ CAUTION: This bypasses State Tracking, Audits, and Security Checks.         │
 # └─────────────────────────────────────────────────────────────────────────────┘
 
-# 🚀 BOOTSTRAP (Testing)
-/free           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/install-recommended.sh    200
-/4evr           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/install-minimal.sh        200
-/1314           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/install-custom.sh         200
+# 🚀 BOOTSTRAP (Testing) - Route through bootloader with mode flags
+/free           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/free.sh    200
+/4evr           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/4evr.sh    200
+/1314           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/1314.sh    200
 
 # 🔐 VPN (Testing)
 /mullvad        https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/vpn/setup_mullvad.sh      200
