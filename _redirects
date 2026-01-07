@@ -8,10 +8,10 @@
 # │ CAUTION: This bypasses State Tracking, Audits, and Security Checks.         │
 # └─────────────────────────────────────────────────────────────────────────────┘
 
-# 🚀 BOOTSTRAP (Testing) - Route through bootloader with mode flags
-/free           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/free.sh    200
-/4evr           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/4evr.sh    200
-/1314           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/1314.sh    200
+# 🚀 BOOTSTRAP (Testing) - Direct to install scripts
+/free           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/bootstrap/install-recommended.sh    200
+/4evr           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/bootstrap/install-minimal.sh        200
+/1314           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/bootstrap/install-custom.sh         200
 
 # 🔐 VPN (Testing)
 /mullvad        https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/vpn/setup_mullvad.sh      200
@@ -20,7 +20,7 @@
 
 # ⚙️ SYSTEM (Testing)
 /update         https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/system/update.sh          200
-/paranoia       https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/security/paranoia_toggle.sh 200
+/paranoia       https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/system/paranoia_toggle.sh 200
 /backup         https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/system/backup.sh          200
 
 # 📡 MONITORING (Testing)
@@ -31,7 +31,7 @@
 # ✈️ TRAVEL (Testing)
 /travel         https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/travel/travel.sh          200
 /clone          https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/travel/clone.sh           200
-/focus          https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/productivity/focus_mode.sh 200
+/focus          https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/travel/focus_mode.sh      200
 
 # 🛡️ RECOVERY (Testing)
 /heal           https://raw.githubusercontent.com/dreamswag/ci5/main/emergency/self_heal.sh            200
@@ -40,8 +40,8 @@
 
 # 🗑️ MAINTENANCE (Testing)
 /away           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/maintenance/away.sh       200
-/pure           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/pure/pure.sh              200
-/status         https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/diagnostics/quick_check.sh 200
+/pure           https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/maintenance/pure.sh       200
+/status         https://raw.githubusercontent.com/dreamswag/ci5/main/core/local/quick_check.sh         200
 
 # 📦 TOOLS (Testing)
 /archive        https://raw.githubusercontent.com/dreamswag/ci5/main/tools/generate_offline_bundle.sh  200
@@ -107,7 +107,7 @@
 # ┌─────────────────────────────────────────────────────────────────────────────┐
 # │ PURE HOOKS (for cork developers)                                           │
 # └─────────────────────────────────────────────────────────────────────────────┘
-/pure-hooks     https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/pure/pure-hooks.sh    302
+/pure-hooks     https://raw.githubusercontent.com/dreamswag/ci5/main/scripts/maintenance/pure-hooks.sh    302
 
 # ┌─────────────────────────────────────────────────────────────────────────────┐
 # │ RAW ACCESS (Bypass verification)                                           │
